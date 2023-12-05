@@ -1,4 +1,4 @@
-import path from "path";
+import * as path from "path";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
