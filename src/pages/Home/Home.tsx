@@ -1,12 +1,13 @@
 import { getNews } from "../../../API/news";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import News from "../../components/News/News";
 import Header from "../../components/Header/Header";
 import { firebaseAuth } from "../../../firebase";
+import { AuthContext } from "../../AuthContext";
 
 const Home = () => {
   const [newsList, setNewsList] = useState<any>([]);
-  const isAuthenticated = firebaseAuth.currentUser !== null;
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     getNews().then((news: any) => {
@@ -15,23 +16,19 @@ const Home = () => {
     });
   }, []);
 
-  console.log(newsList);
-
-  // return newsList.length === 0
-  //   ? "LOADING"
-  //   : newsList.map((news: any) => <News data={news} />);
-
   return (
     <div className="homepage">
-      {isAuthenticated ? 'ZALOGOWANY' : 'NIE ZALOGOWANY'}
-      <Header/>
+      {isAuthenticated ? "ZALOGOWANY" : "NIE ZALOGOWANY"}
+      <Header />
       <main className="homepage__main">
         <section className="homepage__featured">
           {/* Featured news content */}
         </section>
         <section className="homepage__articles">
           {/* You could map over an array of article data here */}
-          {newsList.map((news: any) => <News data={news} />)}
+          {newsList.map((news: any) => (
+            <News data={news} />
+          ))}
           {/* Repeat the article-preview block for each article */}
         </section>
       </main>
