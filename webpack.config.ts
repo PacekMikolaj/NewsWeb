@@ -2,6 +2,7 @@ import * as path from "path";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -40,6 +41,18 @@ export const config: Configuration = {
           "less-loader",
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "images",
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -50,11 +63,12 @@ export const config: Configuration = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [{ from: "public" }],
-    }),
-  ],
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [{ from: "public" }],
+      }),
+      new FaviconsWebpackPlugin('./src/assets/news-fav.png'),
+    ],
 };
 
 export default config;

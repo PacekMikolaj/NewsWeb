@@ -10,5 +10,6 @@
     "outDir": "dist",
     "moduleResolution": "node"
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "src/**/*", "custom.d.ts"]
 }
+

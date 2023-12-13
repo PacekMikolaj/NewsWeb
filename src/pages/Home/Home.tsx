@@ -4,7 +4,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { firestoreDatabase } from "../../../firebase";
 import News from "../../components/News/News";
 import Header from "../../components/Header/Header";
-
+import design from '../../assets/design.png';
 const Home = () => {
   //@ts-ignore
   // firestoreDatabase.collection("news")
@@ -27,6 +27,7 @@ const Home = () => {
     <div className="homepage">
       <Header/>
       <main className="homepage__main">
+        <img src={design} alt="some img"/>
         <section className="homepage__featured">
           {/* Featured news content */}
         </section>
