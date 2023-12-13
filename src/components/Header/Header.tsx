@@ -1,6 +1,7 @@
 import './Header.less';
 import { useNavigate } from 'react-router-dom';
 import { firebaseAuth } from '../../../firebase';
+import { Button } from '../UI/Button/Button';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,8 +18,9 @@ const Header = () => {
       <div className="header__logo-container">
         <img src="path-to-logo.png" alt="Logo" />
       </div>
+      <h2>News Web</h2>
       <div className="header__login-button-container">
-        <button onClick={handleLoginClick}>Login</button>
+        <Button onClick={handleLoginClick}>Login</Button>
       </div>
     </header>
   );
