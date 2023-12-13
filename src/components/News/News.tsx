@@ -17,11 +17,22 @@ const News: React.FC<NewsProps> = ({ data }) => {
 
 
   },[])
-  console.log(data);
-  return <div>News
-    <img width="200px" src={url} alt={url}/>
 
-  </div>;
+  console.log(data);
+  return (
+    <article className="article-preview">
+            <img className="article-preview__image" width="100px" src={url} alt={url} />
+            <div className="article-preview__content">
+              <h3 className="article-preview__title">Article Title</h3>
+              <p className="article-preview__summary">
+                Summary of the article...
+              </p>
+              <a className="article-preview__read-more" href="#">
+                Read More
+              </a>
+            </div>
+          </article>
+  )
 };
 
 export default News;
