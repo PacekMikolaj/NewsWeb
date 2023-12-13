@@ -1,11 +1,11 @@
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import { testFirebase } from "../firebaseTest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
         <Route path="register" element={<Register />} />
         <Route path="addNews" element={<Login />} />
         <Route path="addNotification" element={<Login />} />
-        <Route path="news" element={<Login />} >
+        <Route path="news" element={<Login />}>
           <Route path=":id" element={<Login />} />
         </Route>
         <Route path="*" element={<NotFound />} />
