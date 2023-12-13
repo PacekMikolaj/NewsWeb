@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDownloadURL, ref } from "firebase/storage";
-import { firebaseStorage } from "../../firebase";
+import { firebaseStorage } from "../../../firebase";
 
 type NewsProps = {
   data: any;
