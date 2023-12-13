@@ -1,14 +1,12 @@
 import { getNews } from "../../../API/news";
 import React, { useEffect, useState } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { firestoreDatabase } from "../../../firebase";
 import News from "../../components/News/News";
 import Header from "../../components/Header/Header";
-import design from '../../assets/design.png';
+import design from '../../assets/design.png';import { firebaseAuth } from "../../../firebase";
+
 const Home = () => {
-  //@ts-ignore
-  // firestoreDatabase.collection("news")
   const [newsList, setNewsList] = useState<any>([]);
+  const isAuthenticated = firebaseAuth.currentUser !== null;
 
   useEffect(() => {
     getNews().then((news: any) => {
@@ -25,6 +23,7 @@ const Home = () => {
 
   return (
     <div className="homepage">
+      {isAuthenticated ? 'ZALOGOWANY' : 'NIE ZALOGOWANY'}
       <Header/>
       <main className="homepage__main">
         <img src={design} alt="some img"/>
@@ -33,18 +32,7 @@ const Home = () => {
         </section>
         <section className="homepage__articles">
           {/* You could map over an array of article data here */}
-          <article className="article-preview">
-            <img className="article-preview__image" src="#" alt="Thumbnail" />
-            <div className="article-preview__content">
-              <h3 className="article-preview__title">Article Title</h3>
-              <p className="article-preview__summary">
-                Summary of the article...
-              </p>
-              <a className="article-preview__read-more" href="#">
-                Read More
-              </a>
-            </div>
-          </article>
+          {newsList.map((news: any) => <News data={news} />)}
           {/* Repeat the article-preview block for each article */}
         </section>
       </main>
