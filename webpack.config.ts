@@ -41,18 +41,13 @@ export const config: Configuration = {
           "less-loader",
         ],
       },
-      // {
-      //   test: /\.(png|jpe?g|gif)$/i,
-      //   use: [
-      //     {
-      //       loader: "file-loader",
-      //       options: {
-      //         name: "[name].[ext]",
-      //         outputPath: "images",
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
+      },
     ],
   },
 
@@ -63,12 +58,6 @@ export const config: Configuration = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
-  // plugins: [
-  //   new CopyWebpackPlugin({
-  //     patterns: [{ from: "public" }],
-  //   }),
-  //   new FaviconsWebpackPlugin('./src/assets/news-fav.png'),
-  // ],
 };
 
 export default config;
