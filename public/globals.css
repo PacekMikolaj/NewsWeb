@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;500;600;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
 /*
 --- 01 TYPOGRAPHY SYSTEM
 
@@ -75,7 +74,7 @@ html {
   --color-5: #828282;
   --color-6: #dbdbdb;
 
-  --font-primary: "Merriweather", serif;
+  --font-primary: 'Roboto', sans-serif;
   --font-secondary: "Open Sans", sans-serif;
 
   --border-radius-default: 3px;

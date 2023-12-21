@@ -8,6 +8,20 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register";
 import { AuthProvider } from "./AuthContext";
+import { getDownloadURL, ref } from "firebase/storage";
+import { firebaseStorage } from "../firebase";
+
+export const fetchImage = async (article: any) => {
+  try {
+    const url = await getDownloadURL(
+      ref(firebaseStorage, `news_images/${article.image}`)
+    );
+    return url;
+  } catch (err) {
+    console.log(err);
+    return "";
+  }
+};
 
 export default function App() {
   // testFirebase();

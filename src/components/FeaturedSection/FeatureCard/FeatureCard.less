@@ -1,0 +1,112 @@
+.feature-card {
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to top, 
+      rgba(0, 0, 0, 0.623) 25%, 
+      rgba(0, 0, 0, 0.205) 50%, 
+      rgba(0, 0, 0, 0) 100%
+    );
+    // border-radius: 8px; 
+    z-index: 1; // Ensures the overlay is below the text content
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to top, 
+      rgba(0, 0, 0, 0.26) 100%, 
+      rgba(0, 0, 0, 0.205) 50%, 
+      rgba(0, 0, 0, 0) 100%
+    );
+    transform: translateY(100%);
+    transition: .3s;
+    // border-radius: 8px; 
+    z-index: 1; // Ensures the overlay is below the text content
+  
+  }
+
+  &:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to top, 
+      rgba(0, 0, 0, 0.26) 100%, 
+      rgba(0, 0, 0, 0.205) 50%, 
+      rgba(0, 0, 0, 0) 100%
+    );
+    transform: translateY(0);
+    // border-radius: 8px; 
+    z-index: 1; // Ensures the overlay is below the text content
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding: 2rem;
+
+    &__categories {
+      padding: .6rem 0;
+      &__category {
+        display: inline-block;
+        text-transform: uppercase;
+        margin-right: .7rem;
+        padding: .6rem .8rem;
+        font-size: 1rem;
+        font-weight: 700;
+        background-color: rgb(209, 209, 209);
+        color: var(--paragraph);
+      }
+    }
+    
+    &__title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: white;
+      padding-top: 1rem;
+      &__author {
+        font-size: 1.4rem;
+        padding-left: .6rem;
+        border-left: 2px solid white;
+      }
+
+      &__date {
+        font-size: 1.4rem;
+      }
+    }
+
+  }
+}

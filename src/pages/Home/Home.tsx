@@ -2,11 +2,12 @@ import { getNews } from "../../../API/news";
 import React, { useEffect, useState, useContext } from "react";
 import Header from "../../components/Header/Header";
 import design from "../../assets/design.png";
-import { firebaseAuth } from "../../../firebase";
 import Articles from "../../components/Articles/Articles";
 import { AuthContext } from "../../AuthContext";
+import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
 
 import "./Home.less";
+import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
 
 const Home = () => {
   const [newsList, setNewsList] = useState<any>([]);
@@ -24,7 +25,7 @@ const Home = () => {
       {isAuthenticated ? "ZALOGOWANY" : "NIE ZALOGOWANY"}
       <Header />
       <main className="homepage__main">
-        <div className="homepage__main__top-article">
+        {/* <div className="homepage__main__top-article">
           <img
             className="homepage__main__top-article__img"
             src={design}
@@ -35,9 +36,13 @@ const Home = () => {
           </h3>
         </div>
         <section className="homepage__featured">
-          {/* Featured news content */}
-        </section>
-        <Articles newsList={newsList} />
+          Featured news content
+        </section> */}
+        <FeaturedSection newsList={newsList} />
+        <div className="homepage__main__articles">
+          <Articles newsList={newsList} />
+          <ArticlesSidebar articles={newsList} />
+        </div>
       </main>
     </div>
   );

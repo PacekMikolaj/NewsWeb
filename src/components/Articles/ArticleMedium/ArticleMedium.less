@@ -1,23 +1,24 @@
-.article {
+.article-medium {
   display: flex;
-  flex-direction: column;
   margin: 2rem;
-  border-bottom: 1px solid var(--border);
-  width: 24rem;
   &__image {
-    width: 100%;
+    width: 24rem;
+    object-fit: cover;
   }
   
   &__content {
-    padding: 0 .4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.4rem;
     text-align: start;
   }
   
   &__title {
-    padding-top: 1.2rem;
+    word-break: break-word;
   }
   
   &__summary {
+    line-height: 1.2;
     padding: 1.6rem 0;
   }
   
@@ -30,7 +31,6 @@
       font-size: 12px;
       background-color: var(--highlight);
       color: white;
-      border-radius: var(--border-radius-default);
     }
   }
   
@@ -42,7 +42,7 @@
     padding: 0 .6rem 1.6rem .6rem;
     &__author {
       display: inline-block;
-      padding-left: 6px;
+      padding-left: .6rem;
       border-left: 2px solid var(--border);
       font-weight: 600;
     }
