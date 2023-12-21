@@ -21,7 +21,7 @@ const Header = () => {
       <div className="header__logo-container">
         <img src="path-to-logo.png" alt="Logo" />
       </div>
-      <h2>News Web</h2>
+      <h3>📰 News Web 📰</h3>
       <div className="header__login-button-container">
         {isAuthenticated ? (
           <Button onClick={handleLogoutClick}>Logout</Button>

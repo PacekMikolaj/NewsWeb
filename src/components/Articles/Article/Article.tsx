@@ -31,7 +31,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
         <img className="article__image" width="200px" src={url} alt={url} />
         <div className="article__content">
           <h5 className="article__title">{data.title}</h5>
-          <p className="article__summary p1">{data.context}</p>
+          <p className="article__summary p1">{data.entry}</p>
           {/* <a className="article__read-more" href="#">
           Read More
         </a> */}
