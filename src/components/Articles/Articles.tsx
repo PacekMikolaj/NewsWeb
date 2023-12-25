@@ -9,7 +9,7 @@ const Articles: React.FC<ArticlesProps> = ({ newsList }) => {
     <section className="articles-container">
       <ul className="articles-container__list">
         {newsList.map((news: any) => (
-          <ArticleMedium data={news} key={news.id} />
+          <ArticleMedium article={news} key={news.id} />
         ))}
       </ul>
     </section>

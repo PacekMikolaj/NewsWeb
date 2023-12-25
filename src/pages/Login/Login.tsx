@@ -28,7 +28,7 @@ const Login = () => {
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigate("/home");
+        navigate("/");
         const user = userCredential.user;
       })
       .catch((error) => {
@@ -38,9 +38,8 @@ const Login = () => {
 
   return (
     <main className="login">
-      <Link to="/home">Home</Link>
       <form className="login__form">
-        <h2>Login</h2>
+        <h2>Welcome back!</h2>
         <div className="login__form_row">
           <input
             type="email"
@@ -57,7 +56,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button onClick={handleLogin}>Zaloguj</Button>
+        <Button onClick={handleLogin}>Login</Button>
+        <p>Not a member?<Link to="/register">Register</Link></p>
+        
       </form>
     </main>
   );
