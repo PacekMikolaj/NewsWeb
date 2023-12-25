@@ -1,4 +1,4 @@
-import { firestoreDatabase } from "../firebase";
+import { firestoreDatabase } from "../../firebase";
 import { collection, addDoc, getDocs, snapshotEqual } from "firebase/firestore";
 
 export const getNews = async () => {

@@ -1,5 +1,5 @@
 import { collection, addDoc, getDocs, snapshotEqual } from "firebase/firestore";
-import { firestoreDatabase, realtimeDatabase } from "./firebase";
+import { firestoreDatabase } from "./firebase";
 import { set, ref, onValue } from "firebase/database";
 
 export const testFirebase = async () => {

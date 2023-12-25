@@ -1,8 +1,7 @@
-import { getNews } from "../../../API/news";
+import { getNews } from "../../API/news";
 import React, { useEffect, useState, useContext } from "react";
 import Header from "../../components/Header/Header";
 import design from "../../assets/design.png";
-import { firebaseAuth } from "../../../firebase";
 import Articles from "../../components/Articles/Articles";
 import { AuthContext } from "../../AuthContext";
 

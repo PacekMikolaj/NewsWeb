@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound/NotFound";
-import Register from "./pages/Register";
+import Register from "./pages/Register/Register";
 import { AuthProvider } from "./AuthContext";
 
 export default function App() {

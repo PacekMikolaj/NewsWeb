@@ -16,6 +16,11 @@ const Header = () => {
   const handleLogoutClick = async () => {
     await signOut(firebaseAuth);
   };
+
+  const handleRegisterClick = () => {
+    navigate("/register");
+  };
+
   return (
     <header className="header">
       <div className="header__logo-container">
@@ -26,7 +31,10 @@ const Header = () => {
         {isAuthenticated ? (
           <Button onClick={handleLogoutClick}>Logout</Button>
         ) : (
-          <Button onClick={handleLoginClick}>Login</Button>
+          <>
+            <Button onClick={handleRegisterClick}>Register</Button>
+            <Button onClick={handleLoginClick}>Login</Button>
+          </>
         )}
       </div>
     </header>
