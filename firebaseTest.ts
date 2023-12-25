@@ -20,30 +20,4 @@ export const testFirebase = async () => {
   // querySnapshot.forEach((doc) => {
   //   console.log(`${doc.id} => ${doc.data()}`);
   // });
-  //WRITE REALTIME
-  // try {
-  //   set(ref(realtimeDatabase, "test"), {
-  //     jeden: 1,
-  //     dwa: 2,
-  //     slowo: "slowo",
-  //     tab: [1, 2, 3],
-  //     obiekt: {
-  //       imie: "ala",
-  //       wiek: 23,
-  //     },
-  //   });
-  //   console.log("Saved to database: ");
-  // } catch (e) {
-  //   console.error("Error adding data: ", e);
-  // }
-  //READ REALTIME
-  // try {
-  //   const info = ref(realtimeDatabase, "test/obiekt");
-  //   onValue(info, (snapshot) => {
-  //     console.log(snapshot.val());
-  //   });
-  //   console.log(info);
-  // } catch (e) {
-  //   console.log("error: ", e);
-  // }
 };

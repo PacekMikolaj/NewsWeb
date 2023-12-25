@@ -1,0 +1,27 @@
+.article-small {
+  display: flex;
+  background-color: var(--background-secondary);
+  overflow: hidden;
+  gap: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+  &__wrapper {
+    position: relative;
+  }
+
+  &__image {
+    width: 14rem;
+    height: 10rem;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+}

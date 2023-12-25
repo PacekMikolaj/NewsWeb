@@ -4,7 +4,9 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.less";
+import { Button } from "../../components/UI/Button/Button";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const Login = () => {
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigate("/home");
+        navigate("/");
         const user = userCredential.user;
       })
       .catch((error) => {
@@ -35,22 +37,30 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Hasło"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Zaloguj</button>
-    </div>
+    <main className="login">
+      <form className="login__form">
+        <h2>Welcome back!</h2>
+        <div className="login__form_row">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="login__form_row">
+          <input
+            type="password"
+            placeholder="Hasło"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <Button onClick={handleLogin}>Login</Button>
+        <p>Not a member?<Link to="/register">Register</Link></p>
+        
+      </form>
+    </main>
   );
 };
 

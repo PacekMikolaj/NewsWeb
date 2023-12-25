@@ -1,0 +1,40 @@
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding: 2.8rem 3.8rem;
+    border-radius: 7px;
+    box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.123);
+    background-color: var(--background-primary);
+
+    width: 48rem;
+    margin: 8rem auto;
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      font-family: inherit;
+      font-size: 1.6rem;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--gray-light);
+      transition: all 0.2s;
+    }
+
+    &__row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { registerUser } from "../../API/userAPI";
+import "./Register.less";
 import { Button } from "../../components/UI/Button/Button";
+import { registerUser } from "../../API/userAPI";
 import { useNavigate } from "react-router-dom";
 import "./Register.less";
 
@@ -20,6 +21,7 @@ const Register = () => {
     surname: "",
     category: [],
   });
+
   const navigate = useNavigate();
 
   const register = async (event: React.FormEvent) => {
@@ -36,34 +38,54 @@ const Register = () => {
 
   return (
     <form className="form" onSubmit={register}>
+      <h3>Create new account</h3>
+      <label htmlFor="name" className="register__label">
+        Name:{" "}
+      </label>
       <input
         type="text"
         value={userData.name}
+        className="register__input"
         onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         placeholder="name"
         required
       />
+      <label htmlFor="surname" className="register__label">
+        Surname:{" "}
+      </label>
       <input
         type="text"
         value={userData.surname}
+        className="register__input"
         onChange={(e) => setUserData({ ...userData, surname: e.target.value })}
         placeholder="surname"
         required
       />
+      <label htmlFor="email" className="register__label">
+        Email:{" "}
+      </label>
       <input
         type="email"
         value={userData.email}
+        className="register__input"
         onChange={(e) => setUserData({ ...userData, email: e.target.value })}
         placeholder="email"
         required
       />
+      <label htmlFor="password" className="register__label">
+        Password:
+      </label>
       <input
         type="password"
         value={userData.password}
+        className="register__input"
         onChange={(e) => setUserData({ ...userData, password: e.target.value })}
         placeholder="password"
         required
       />
+      <label htmlFor="category" className="register__label">
+        Category:
+      </label>
       <label htmlFor="student">
         Student
         <input
@@ -110,7 +132,9 @@ const Register = () => {
           }}
         />
       </label>
-      <Button onClick={register}>Register</Button>
+      <Button onClick={register} className="register__button">
+        Register
+      </Button>
     </form>
   );
 };
