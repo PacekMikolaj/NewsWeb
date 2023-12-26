@@ -13,13 +13,16 @@ import ArticleDetails from "./pages/ArticleDetails/ArticleDetails";
 import AppLayout from "./pages/AppLayout/AppLayout";
 //TODO
 /*
-  - add loader to images
   - style register and login components
+  - add loader to images
   - style article details
   - think about routes structure
   - add router actions in forms
-  - think about how to handle errors
-  
+  - think about how to handle errors in pages
+  - think about logo and text in header
+  - article sidebar in article details?
+  - think where to storage state
+  - think about how to handle errors in forms
 */
 
 export const fetchImage = async (article: any) => {
