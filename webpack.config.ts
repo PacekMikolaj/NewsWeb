@@ -48,6 +48,10 @@ export const config: Configuration = {
           filename: 'images/[name][ext]'
         }
       },
+      {
+        test: /\.svg$/,
+        use: ['svg-url-loader'],
+      },
     ],
   },
 

@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth, firestoreDatabase } from "../../firebase";
 import { setDoc, doc } from "firebase/firestore";
-import { user } from '../pages/Register/Register';
+import { User } from '../pages/Register/Register';
 
-export async function registerUser(userData: user) {
+export async function registerUser(userData: User) {
   const userCredential = await createUserWithEmailAndPassword(firebaseAuth, userData.email, userData.password);
   const user = userCredential.user;
 
