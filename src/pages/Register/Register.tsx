@@ -7,6 +7,7 @@ import "./Register.less";
 import Input from "../../components/UI/Input/Input";
 import WelcomePanel from "../../components/WelcomePanel/WelcomePanel";
 import registerImage from "../../assets/register.svg";
+import { motion } from "framer-motion";
 
 export type User = {
   email: string;
@@ -39,9 +40,42 @@ const Register = () => {
       });
   };
 
+  const handleProfesorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setUserData({
+        ...userData,
+        category: [...userData.category, "profesor"],
+      });
+    } else {
+      setUserData({
+        ...userData,
+        category: userData.category.filter((item) => item !== "profesor"),
+      });
+    }
+  };
+
+  const handleStudentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setUserData({
+        ...userData,
+        category: [...userData.category, "student"],
+      });
+    } else {
+      setUserData({
+        ...userData,
+        category: userData.category.filter((item) => item !== "student"),
+      });
+    }
+  };
+
   return (
     <>
-      <main className="register">
+      <motion.main
+        className="register"
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth }}
+      >
         <div className="register-container">
           <div className="register-container__inner">
             <form className="register__form" onSubmit={register}>
@@ -90,67 +124,40 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <div>
-              <label htmlFor="student">
-                Student
-                <input
-                  type="checkbox"
-                  name="student"
-                  checked={userData.category.includes("student")}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setUserData({
-                        ...userData,
-                        category: [...userData.category, "student"],
-                      });
-                    } else {
-                      setUserData({
-                        ...userData,
-                        category: userData.category.filter(
-                          (item) => item !== "student"
-                        ),
-                      });
-                    }
-                  }}
-                />
-              </label>
-              <label htmlFor="profesor">
-                Profesor
-                <input
-                  name="profesor"
-                  type="checkbox"
-                  checked={userData.category.includes("profesor")}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setUserData({
-                        ...userData,
-                        category: [...userData.category, "profesor"],
-                      });
-                    } else {
-                      setUserData({
-                        ...userData,
-                        category: userData.category.filter(
-                          (item) => item !== "profesor"
-                        ),
-                      });
-                    }
-                  }}
-                />
-              </label>
-
+              <div className="register__form__checkboxes">
+                <label htmlFor="student">
+                  Student
+                  <input
+                    id="student"
+                    type="checkbox"
+                    name="student"
+                    checked={userData.category.includes("student")}
+                    onChange={handleStudentChange}
+                  />
+                </label>
+                <label htmlFor="profesor">
+                  Profesor
+                  <input
+                    id="profesor"
+                    name="profesor"
+                    type="checkbox"
+                    checked={userData.category.includes("profesor")}
+                    onChange={handleProfesorChange}
+                  />
+                </label>
               </div>
-              <Button onClick={register} className="register__form__btn">
+              <Button className="register__form__btn" type="submit">
                 Register
               </Button>
             </form>
           </div>
         </div>
-      </main>
+      </motion.main>
 
       <WelcomePanel
         image={registerImage}
         title="Back to the Latest News!"
-        content="Stay updated and informed! Rejoin our news community to access the latest insights, breaking news, and in-depth analysis."
+        content="Stay informed with the latest news! Return to our community for fresh insights and comprehensive analysis."
         btnText="Sign In"
         path="/login"
         side="right"

@@ -1,19 +1,20 @@
 import { testFirebase } from "../firebaseTest";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { getDownloadURL, ref } from "firebase/storage";
+import { firebaseStorage } from "../firebase";
 
+import { AuthProvider } from "./AuthContext";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
-import { AuthProvider } from "./AuthContext";
-import { getDownloadURL, ref } from "firebase/storage";
-import { firebaseStorage } from "../firebase";
 import ArticleDetails from "./pages/ArticleDetails/ArticleDetails";
 import AppLayout from "./pages/AppLayout/AppLayout";
+
+import { AnimatePresence } from "framer-motion";
 //TODO
 /*
-  - style register and login components
   - add loader to images
   - style article details
   - think about routes structure
@@ -83,7 +84,9 @@ export default function App() {
   // testFirebase();
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <AnimatePresence>
+        <RouterProvider router={router} />
+      </AnimatePresence>
     </AuthProvider>
   );
 }

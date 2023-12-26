@@ -10,6 +10,8 @@ import { Button } from "../../components/UI/Button/Button";
 import loginImage from "../../assets/log.svg";
 import WelcomePanel from "../../components/WelcomePanel/WelcomePanel";
 import Input from "../../components/UI/Input/Input";
+import { motion } from "framer-motion";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,7 +43,12 @@ const Login = () => {
 
   return (
     <>
-      <main className="login">
+      <motion.main 
+      className="login" 
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth }}
+      >
         <div className="login-container">
           <div className="login-container__inner">
             <form className="login__form">
@@ -66,7 +73,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </main>
+      </motion.main>
       <WelcomePanel
         image={loginImage}
         title="Join Our Community!"
