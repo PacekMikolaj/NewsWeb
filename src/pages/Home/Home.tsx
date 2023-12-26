@@ -1,4 +1,4 @@
-import { getNews } from "../../../API/news";
+import { getNews } from "../../API/news";
 import React, { useEffect, useState, useContext } from "react";
 import Articles from "../../components/Articles/Articles";
 import { AuthContext } from "../../AuthContext";
