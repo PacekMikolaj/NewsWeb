@@ -16,13 +16,13 @@ const Register = () => {
     password: "",
     name: "",
     surname: "",
-    category: [],
+    category: "",
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
-  const register = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     registerUser(userData)
       .then((response) => {
@@ -53,34 +53,6 @@ const Register = () => {
       });
   };
 
-  const handleProfesorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setUserData({
-        ...userData,
-        category: [...userData.category, "profesor"],
-      });
-    } else {
-      setUserData({
-        ...userData,
-        category: userData.category.filter((item) => item !== "profesor"),
-      });
-    }
-  };
-
-  const handleStudentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setUserData({
-        ...userData,
-        category: [...userData.category, "student"],
-      });
-    } else {
-      setUserData({
-        ...userData,
-        category: userData.category.filter((item) => item !== "student"),
-      });
-    }
-  };
-
   return (
     <>
       <main className="register">
@@ -91,7 +63,7 @@ const Register = () => {
           className="register-container"
         >
           <div className="register-container__inner">
-            <form className="register__form" onSubmit={register}>
+            <form className="register__form" onSubmit={handleSubmit}>
               <h2>Create new account</h2>
 
               <Input
@@ -137,28 +109,33 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <div className="register__form__checkboxes">
-                <label htmlFor="student">
-                  Student
-                  <input
-                    id="student"
-                    type="checkbox"
-                    name="student"
-                    checked={userData.category.includes("student")}
-                    onChange={handleStudentChange}
-                  />
-                </label>
-                <label htmlFor="profesor">
-                  Profesor
-                  <input
-                    id="profesor"
-                    name="profesor"
-                    type="checkbox"
-                    checked={userData.category.includes("profesor")}
-                    onChange={handleProfesorChange}
-                  />
-                </label>
-              </div>
+              <label htmlFor="student">
+                Student
+                <input
+                  id="student"
+                  type="radio"
+                  name="category"
+                  value="student"
+                  checked={userData.category === "student"}
+                  onChange={(e) =>
+                    setUserData({ ...userData, category: e.target.value })
+                  }
+                />
+              </label>
+
+              <label htmlFor="teacher">
+                Teacher
+                <input
+                  id="teacher"
+                  type="radio"
+                  name="category"
+                  value="teacher"
+                  checked={userData.category === "teacher"}
+                  onChange={(e) =>
+                    setUserData({ ...userData, category: e.target.value })
+                  }
+                />
+              </label>
               <Button className="register__form__btn" type="submit">
                 Register
               </Button>

@@ -16,7 +16,7 @@ const defaultContext: UserContextProps = {
     name: "",
     surname: "",
     email: "",
-    category: [],
+    category: "",
   },
   isAuthenticated: false,
 };

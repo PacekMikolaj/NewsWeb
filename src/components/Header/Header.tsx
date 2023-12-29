@@ -14,6 +14,10 @@ const Header = () => {
     navigate("/login");
   };
 
+  const handleAddArticleClick = () => {
+    navigate("/add-article");
+  };
+
   const handleLogoutClick = () => {
     logoutUser();
   };
@@ -37,11 +41,16 @@ const Header = () => {
         </Link>
         <div className="header__login-button-container">
           {isAuthenticated ? (
-            <Button onClick={handleLogoutClick}>Logout</Button>
+            <>
+              <Button onClick={handleLogoutClick}>Logout</Button>
+              <Button onClick={handleAddArticleClick}>Add article</Button>
+            </>
           ) : (
-            <Button onClick={handleLoginClick}>Login</Button>
+            <>
+              <Button onClick={handleLoginClick}>Login</Button>
+              <Button onClick={handleRegisterClick}>Register</Button>
+            </>
           )}
-          <Button onClick={handleRegisterClick}>Register</Button>
         </div>
       </div>
     </header>

@@ -14,7 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleLogin = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     loginUser(email, password)
@@ -58,7 +58,7 @@ const Login = () => {
           style={{ transform: "" }}
         >
           <div className="login-container__inner">
-            <form className="login__form" onSubmit={handleLogin}>
+            <form className="login__form" onSubmit={handleSubmit}>
               <h2>Welcome back!</h2>
               <Input
                 required

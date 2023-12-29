@@ -12,6 +12,7 @@ import { AnimatePresence } from "framer-motion";
 import SingleArticle, {
   loader as singleArticleLoader,
 } from "./pages/SingleArticle/SingleArticle";
+import AddNews from "./pages/AddNews/AddNews";
 //TODO
 /*
   - style article details
@@ -62,8 +63,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "addNews",
-        element: <Login />,
+        path: "add-news",
+        element: <AddNews />,
       },
       {
         path: "addNotification",

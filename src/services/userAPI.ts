@@ -11,7 +11,7 @@ export type User = {
   password?: string;
   name: string;
   surname: string;
-  category: Array<string>;
+  category: string;
 };
 
 export const registerUser = async (userData: User) => {
@@ -27,7 +27,12 @@ export const registerUser = async (userData: User) => {
 
   if (user) {
     const userDoc = doc(firestoreDatabase, "users", user.uid);
-    await setDoc(userDoc, { ...userData });
+    await setDoc(userDoc, {
+      name: userData.name,
+      surname: userData.surname,
+      email: userData.email,
+      category: userData.category,
+    });
   }
 };
 
