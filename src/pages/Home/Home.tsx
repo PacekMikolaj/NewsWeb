@@ -1,4 +1,4 @@
-import { getNews } from "../../services/news";
+import { getAllNews } from "../../services/newsAPI";
 import React, { useEffect, useState, useContext } from "react";
 import Articles from "../../components/Articles/Articles";
 import { AuthContext } from "../../AuthContext";
@@ -29,7 +29,7 @@ const Home = () => {
 };
 
 export const loader = async () => {
-  const newsList = await getNews();
+  const newsList = await getAllNews();
   console.log(newsList);
   return newsList;
 };

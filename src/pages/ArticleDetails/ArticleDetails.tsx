@@ -1,8 +1,15 @@
 import "./ArticleDetails.less";
 import imageUrl from "../../assets/design.png";
 import CategoriesDisplay from "../../components/CategoriesDisplay/CategoriesDisplay";
+import { useEffect } from "react";
+import { getNews } from "../../services/newsAPI";
 
 const ArticleDetails = () => {
+  useEffect(() => {
+    getNews("9ovyHTmFn04ZpfDuTUgS").then((response) => {
+      console.log(response);
+    });
+  }, []);
   return (
     <article className="article-details">
       <header className="article-details__header">
