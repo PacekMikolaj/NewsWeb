@@ -1,12 +1,13 @@
 import "./FeatureCard.less";
 import { useState, useEffect } from "react";
 import noImage from "../../../assets/no-image.jpg";
-import { fetchImage } from "../../../App";
+import { fetchImage } from "../../../services/newsAPI";
 import { Link } from "react-router-dom";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
+import { News } from "../../../services/newsAPI";
 
 type FeaturedCardProps = {
-  article: any;
+  article: News;
 };
 
 const FeatureCard: React.FC<FeaturedCardProps> = ({ article }) => {

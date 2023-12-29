@@ -25,18 +25,6 @@ import AddNews from "./pages/AddNews/AddNews";
   - think about how to handle errors in forms
 */
 
-export const fetchImage = async (article: any) => {
-  try {
-    const url = await getDownloadURL(
-      ref(firebaseStorage, `news_images/${article.image}`)
-    );
-    return url;
-  } catch (err) {
-    console.log(err);
-    return "";
-  }
-};
-
 const router = createBrowserRouter([
   {
     element: <AppLayout />,

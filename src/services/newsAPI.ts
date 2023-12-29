@@ -1,4 +1,4 @@
-import { firestoreDatabase } from "../../firebase";
+import { firestoreDatabase, firebaseStorage } from "../../firebase";
 import {
   collection,
   getDocs,
@@ -7,6 +7,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
 
 export interface News {
   author: string;
@@ -46,3 +47,16 @@ export const getNewsByCategory = async (category: string) => {
     id: doc.id,
   }));
 };
+
+export const fetchImage = async (article: News) => {
+  try {
+    const url = await getDownloadURL(
+      ref(firebaseStorage, `news_images/${article.image}`)
+    );
+    return url;
+  } catch (err) {
+    console.log(err);
+    return "";
+  }
+};
+

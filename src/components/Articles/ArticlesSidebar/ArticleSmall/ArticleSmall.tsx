@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { fetchImage } from "../../../../App";
+import { fetchImage } from "../../../../services/newsAPI";
 import noImage from "../../../../assets/no-image.jpg";
 import "./ArticleSmall.less";
 import { Link } from "react-router-dom";
+import { News } from "../../../../services/newsAPI";
 
 type ArticleSmallProps = {
-  article: any;
+  article: News;
 };
 
 const ArticleSmall: React.FC<ArticleSmallProps> = ({ article }) => {

@@ -3,6 +3,7 @@ import ArticleDetails from "../../components/Articles/ArticleDetails/ArticleDeta
 import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
 import "./SingleArticle.less";
 import { getAllNews, getNews } from "../../services/newsAPI";
+import { Params } from "react-router-dom";
 
 const SingleArticle = () => {
   const { article, articles }: any = useLoaderData();
@@ -14,8 +15,8 @@ const SingleArticle = () => {
   );
 };
 
-export const loader = async ({ params }: any) => {
-  const data = await Promise.all([getAllNews(), getNews(params.id)]);
+export const loader = async ({ params }: { params: Params }) => {
+  const data = await Promise.all([getAllNews(), getNews(params.id ?? "")]);
   console.log(data);
 
   return { articles: data[0], article: data[1] };
