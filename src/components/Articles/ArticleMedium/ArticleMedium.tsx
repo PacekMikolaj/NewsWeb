@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./ArticleMedium.less";
 import noImage from "../../../assets/no-image.jpg";
-import { fetchImage } from "../../../services/newsAPI";
+import { getImage } from "../../../services/storageAPI";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { Link } from "react-router-dom";
-import { News } from "../../../services/newsAPI";
+import { Article } from "../../../services/articleAPI";
 
 type ArticleMediumProps = {
-  article: News;
+  article: Article;
 };
 
 const ArticleMedium: React.FC<ArticleMediumProps> = ({ article }) => {
@@ -15,14 +15,14 @@ const ArticleMedium: React.FC<ArticleMediumProps> = ({ article }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      setUrl(await fetchImage(article));
+      setUrl(await getImage(article.image));
     };
     fetch();
   }, []);
 
   return (
     <li>
-      <Link to={`/news/${article.id}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/article/${article.id}`} style={{ textDecoration: "none" }}>
         <article className="article-medium">
           <img
             className="article-medium__image"

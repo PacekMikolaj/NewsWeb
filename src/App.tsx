@@ -3,7 +3,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { firebaseStorage } from "../firebase";
 
 import { UserProvider } from "./UserContext";
-import Home, { loader as newsLoader } from "./pages/Home/Home";
+import Home, { loader as articleLoader } from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
@@ -12,7 +12,7 @@ import { AnimatePresence } from "framer-motion";
 import SingleArticle, {
   loader as singleArticleLoader,
 } from "./pages/SingleArticle/SingleArticle";
-import AddNews from "./pages/AddNews/AddNews";
+import AddArticle from "./pages/AddArticle/AddArticle";
 //TODO
 /*
   - style article details
@@ -34,13 +34,13 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         errorElement: <NotFound />,
-        loader: newsLoader,
+        loader: articleLoader,
       },
       {
         path: "/:category",
         element: <Home />,
         errorElement: <NotFound />,
-        loader: newsLoader,
+        loader: articleLoader,
       },
       {
         path: "login",
@@ -51,15 +51,15 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "add-news",
-        element: <AddNews />,
+        path: "add-article",
+        element: <AddArticle />,
       },
       {
         path: "addNotification",
         element: <Login />,
       },
       {
-        path: "/news/:id",
+        path: "/article/:id",
         element: <SingleArticle />,
         loader: singleArticleLoader,
       },

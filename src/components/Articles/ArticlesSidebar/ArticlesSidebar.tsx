@@ -1,20 +1,23 @@
 import React from "react";
 import "./ArticlesSidebar.less";
 import ArticleSmall from "./ArticleSmall/ArticleSmall";
-import { News } from "../../../services/newsAPI";
+import { Article } from "../../../services/articleAPI";
 
 type ArticlesSidebarProps = {
-  articles: any;
-}
+  articlesList: Article[];
+};
 
-const ArticlesSidebar: React.FC<ArticlesSidebarProps> = ({ articles }) => (
-  <aside className="articles-sidebar">
-    <ul className="articles-sidebar__list">
-      {articles.map((article: News) => (
-        <ArticleSmall key={article.id} article={article} />
-      ))}
-    </ul>
-  </aside>
-);
+const ArticlesSidebar: React.FC<ArticlesSidebarProps> = ({ articlesList }) => {
+  console.log(articlesList);
+  return (
+    <aside className="articles-sidebar">
+      <ul className="articles-sidebar__list">
+        {articlesList.map((article: Article) => (
+          <ArticleSmall key={article.id} article={article} />
+        ))}
+      </ul>
+    </aside>
+  );
+};
 
 export default ArticlesSidebar;

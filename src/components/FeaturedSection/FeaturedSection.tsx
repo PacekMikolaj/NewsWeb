@@ -1,16 +1,16 @@
-import { News } from "../../services/newsAPI";
+import { Article } from "../../services/articleAPI";
 import FeatureCard from "./FeatureCard/FeatureCard";
 import "./FeaturedSection.less";
 type FeaturedSectionProps = {
-  newsList: any;
+  articlesList: Article[];
 };
 
-const FeaturedSection: React.FC<FeaturedSectionProps> = ({ newsList }) => {
+const FeaturedSection: React.FC<FeaturedSectionProps> = ({ articlesList }) => {
   return (
     <section className="featured-section-container">
       <ul className="featured-section-container__list">
-        {newsList.slice(0, 4).map((news: News, index: number) => (
-          <FeatureCard key={index} article={news} />
+        {articlesList.slice(0, 4).map((article: Article, index: number) => (
+          <FeatureCard key={index} article={article} />
         ))}
       </ul>
     </section>
