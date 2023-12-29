@@ -1,13 +1,13 @@
 import { getNews } from "../../services/news";
-import React, { useEffect, useState, useContext } from "react";
-import Articles from "../../components/Articles/Articles";
+import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
-import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
 
-import "./Home.less";
+import Articles from "../../components/Articles/Articles";
+import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
 import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
 import Footer from "../../components/Footer/Footer";
-import { useLoaderData } from "react-router-dom";
+import "./Home.less";
 
 const Home = () => {
   const newsList = useLoaderData();
@@ -30,7 +30,6 @@ const Home = () => {
 
 export const loader = async () => {
   const newsList = await getNews();
-  console.log(newsList);
   return newsList;
 };
 

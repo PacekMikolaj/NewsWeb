@@ -5,14 +5,13 @@ import { firebaseStorage } from "../firebase";
 
 import { AuthProvider } from "./AuthContext";
 import Home, { loader as newsLoader } from "./pages/Home/Home";
-import Profile from "./pages/Profile";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
-import ArticleDetails from "./pages/ArticleDetails/ArticleDetails";
 import AppLayout from "./pages/AppLayout/AppLayout";
 
 import { AnimatePresence } from "framer-motion";
+import SingleArticle from "./pages/SingleArticle/SingleArticle";
 //TODO
 /*
   - add loader to images
@@ -67,7 +66,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/news/:id",
-        element: <ArticleDetails />,
+        element: <SingleArticle />,
+        loader: newsLoader,
       },
     ],
   },

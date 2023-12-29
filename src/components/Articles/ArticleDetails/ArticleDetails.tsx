@@ -1,6 +1,6 @@
 import "./ArticleDetails.less";
-import imageUrl from "../../assets/design.png";
-import CategoriesDisplay from "../../components/CategoriesDisplay/CategoriesDisplay";
+import imageUrl from "../../../assets/design.png";
+import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 
 const ArticleDetails = () => {
   return (
