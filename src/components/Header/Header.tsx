@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthContext";
 import { useContext } from "react";
 import { Button } from "../UI/Button/Button";
 import logo from "../../assets/logo.png";
-import { logoutUser } from "../../API/userAPI";
+import { logoutUser } from "../../services/userAPI";
 
 const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);

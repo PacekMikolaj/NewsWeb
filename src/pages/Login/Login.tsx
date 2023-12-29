@@ -6,7 +6,7 @@ import loginImage from "../../assets/log.svg";
 import WelcomePanel from "../../components/WelcomePanel/WelcomePanel";
 import Input from "../../components/UI/Input/Input";
 import { motion } from "framer-motion";
-import { loginUser } from "../../API/userAPI";
+import { loginUser } from "../../services/userAPI";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +14,9 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
     loginUser(email, password)
       .then(() => {
         navigate("/");
@@ -47,15 +49,16 @@ const Login = () => {
 
   return (
     <>
-      <motion.main
-        className="login"
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        exit={{ x: window.innerWidth }}
-      >
-        <div className="login-container">
+      <main className="login">
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0, transition: { duration: 0.3 } }}
+          exit={{ x: 0 }}
+          className="login-container"
+          style={{ transform: "" }}
+        >
           <div className="login-container__inner">
-            <form className="login__form">
+            <form className="login__form" onSubmit={handleLogin}>
               <h2>Welcome back!</h2>
               <Input
                 required
@@ -73,18 +76,14 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 icon={<i className="fas fa-lock" />}
               />
-              <Button
-                type="submit"
-                className="login__form__btn"
-                onClick={handleLogin}
-              >
+              <Button type="submit" className="login__form__btn">
                 Login
               </Button>
               {errorMessage && <p>{errorMessage}</p>}
             </form>
           </div>
-        </div>
-      </motion.main>
+        </motion.div>
+      </main>
       <WelcomePanel
         image={loginImage}
         title="Join Our Community!"

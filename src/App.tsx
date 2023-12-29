@@ -4,7 +4,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { firebaseStorage } from "../firebase";
 
 import { AuthProvider } from "./AuthContext";
-import Home from "./pages/Home/Home";
+import Home, { loader as newsLoader } from "./pages/Home/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         errorElement: <NotFound />,
+        loader: newsLoader,
       },
       {
         path: "profile",

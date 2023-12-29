@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.less";
 import { Button } from "../../components/UI/Button/Button";
-import { registerUser } from "../../API/userAPI";
+import { registerUser } from "../../services/userAPI";
 import { useNavigate } from "react-router-dom";
 import "./Register.less";
 import Input from "../../components/UI/Input/Input";
@@ -90,16 +90,16 @@ const Register = () => {
 
   return (
     <>
-      <motion.main
-        className="register"
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        exit={{ x: window.innerWidth }}
-      >
-        <div className="register-container">
+      <main className="register">
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: 0, transition: { duration: 0.3 } }}
+          exit={{ x: 0 }}
+          className="register-container"
+        >
           <div className="register-container__inner">
             <form className="register__form" onSubmit={register}>
-              <h3>Create new account</h3>
+              <h2>Create new account</h2>
 
               <Input
                 type="text"
@@ -172,8 +172,8 @@ const Register = () => {
               {errorMessage && <p>{errorMessage}</p>}
             </form>
           </div>
-        </div>
-      </motion.main>
+        </motion.div>
+      </main>
 
       <WelcomePanel
         image={registerImage}
