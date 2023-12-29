@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './WelcomePanel.less';
+import "./WelcomePanel.less";
 
 type WelcomePanelProps = {
   image: string;
@@ -18,19 +18,19 @@ const WelcomePanel: React.FC<WelcomePanelProps> = ({
   path,
   side,
 }) => {
-  const style = side === "right" ? { 
-    left: "50%"
-  } : {}
+  const style =
+    side === "right"
+      ? {
+          left: "50%",
+        }
+      : { right: "50%" };
 
-  
   return (
     <div className="panel-container" style={style}>
-      <div className="panel-container__panel panel-container__panel--left">
+      <div className={`panel-container__panel panel-container__panel--${side}`}>
         <div className="panel-container__content">
           <h4>{title}</h4>
-          <p>
-            {content}
-          </p>
+          <p>{content}</p>
           <Link to={path} className="panel-container__button">
             {btnText}
           </Link>
