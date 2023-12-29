@@ -4,9 +4,10 @@ import noImage from "../../../assets/no-image.jpg";
 import { fetchImage } from "../../../App";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { Link } from "react-router-dom";
+import { News } from "../../../services/newsAPI";
 
 type ArticleMediumProps = {
-  article: any;
+  article: News;
 };
 
 const ArticleMedium: React.FC<ArticleMediumProps> = ({ article }) => {

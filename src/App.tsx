@@ -12,6 +12,7 @@ import { AnimatePresence } from "framer-motion";
 import SingleArticle, {
   loader as singleArticleLoader,
 } from "./pages/SingleArticle/SingleArticle";
+import { News } from "./services/newsAPI";
 //TODO
 /*
   - style article details
@@ -24,7 +25,7 @@ import SingleArticle, {
   - think about how to handle errors in forms
 */
 
-export const fetchImage = async (article: any) => {
+export const fetchImage = async (article: News) => {
   try {
     const url = await getDownloadURL(
       ref(firebaseStorage, `news_images/${article.image}`)
