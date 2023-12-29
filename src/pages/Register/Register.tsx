@@ -25,6 +25,7 @@ const Register = () => {
     surname: "",
     category: [],
   });
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -36,6 +37,25 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
+        let errorMessage;
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMessage =
+              "The email address is already in use by another account.";
+            break;
+          case "auth/invalid-email":
+            errorMessage = "The email address is not valid.";
+            break;
+          case "auth/operation-not-allowed":
+            errorMessage = "Password sign-in is not enabled for this project.";
+            break;
+          case "auth/weak-password":
+            errorMessage = "The password is too weak.";
+            break;
+          default:
+            errorMessage = "An error occurred. Please try again.";
+        }
+        setErrorMessage(errorMessage);
         console.log(error);
       });
   };
@@ -149,6 +169,7 @@ const Register = () => {
               <Button className="register__form__btn" type="submit">
                 Register
               </Button>
+              {errorMessage && <p>{errorMessage}</p>}
             </form>
           </div>
         </div>

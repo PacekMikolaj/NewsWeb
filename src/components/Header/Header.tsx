@@ -2,20 +2,20 @@ import "./Header.less";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 import { useContext } from "react";
-import { signOut } from "firebase/auth";
-import { firebaseAuth } from "../../../firebase";
 import { Button } from "../UI/Button/Button";
 import logo from "../../assets/logo.png";
+import { logoutUser } from "../../API/userAPI";
 
 const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleLoginClick = () => {
     navigate("/login");
   };
 
-  const handleLogoutClick = async () => {
-    await signOut(firebaseAuth);
+  const handleLogoutClick = () => {
+    logoutUser();
   };
 
   const handleRegisterClick = () => {
