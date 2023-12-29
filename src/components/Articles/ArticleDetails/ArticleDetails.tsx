@@ -1,7 +1,7 @@
 import "./ArticleDetails.less";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { useEffect, useState } from "react";
-import { fetchImage } from "../../../App";
+import { fetchImage } from "../../../services/newsAPI";
 import { News } from "../../../services/newsAPI";
 type ArticleDetailsProps = {
   articleData: News;

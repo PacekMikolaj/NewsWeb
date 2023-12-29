@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ArticleMedium.less";
 import noImage from "../../../assets/no-image.jpg";
-import { fetchImage } from "../../../App";
+import { fetchImage } from "../../../services/newsAPI";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { Link } from "react-router-dom";
 import { News } from "../../../services/newsAPI";
