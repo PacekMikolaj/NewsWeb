@@ -50,10 +50,6 @@ const router = createBrowserRouter([
         loader: newsLoader, 
       },
       {
-        path: "profile",
-        element: <Profile />,
-      },
-      {
         path: "login",
         element: <Login />,
       },
@@ -67,10 +63,6 @@ const router = createBrowserRouter([
       },
       {
         path: "addNotification",
-        element: <Login />,
-      },
-      {
-        path: "news",
         element: <Login />,
       },
       {
