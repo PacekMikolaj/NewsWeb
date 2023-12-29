@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { fetchImage } from "../../../../services/newsAPI";
+import { getImage } from "../../../../services/storageAPI";
 import noImage from "../../../../assets/no-image.jpg";
 import "./ArticleSmall.less";
 import { Link } from "react-router-dom";
-import { News } from "../../../../services/newsAPI";
+import { Article } from "../../../../services/articleAPI";
 
 type ArticleSmallProps = {
-  article: News;
+  article: Article;
 };
 
 const ArticleSmall: React.FC<ArticleSmallProps> = ({ article }) => {
@@ -14,13 +14,13 @@ const ArticleSmall: React.FC<ArticleSmallProps> = ({ article }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      setUrl(await fetchImage(article));
+      setUrl(await getImage(article.image));
     };
     fetch();
   }, []);
 
   return (
-    <Link to={`/news/${article.id}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/article/${article.id}`} style={{ textDecoration: "none" }}>
       <li className="article-small">
         <div className="article-small__wrapper">
           <img

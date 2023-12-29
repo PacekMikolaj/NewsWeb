@@ -5,12 +5,16 @@ import Articles from "../../components/Articles/Articles";
 import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
 import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
 import Footer from "../../components/Footer/Footer";
-import { getAllNews, getNewsByCategory } from "../../services/newsAPI";
+import {
+  getAllArticles,
+  getArticlesByCategory,
+} from "../../services/articleAPI";
 import "./Home.less";
 import Filter from "../../components/UI/Filter/Filter";
+import { Article } from "../../services/articleAPI";
 
 const Home = () => {
-  const newsList = useLoaderData();
+  const articlesList: Array<Article> = useLoaderData() as Array<Article>;
   const {
     isAuthenticated,
     userData: { category },
@@ -26,10 +30,10 @@ const Home = () => {
       {isAuthenticated ? "ZALOGOWANY" : "NIE ZALOGOWANY"}
       <main className="homepage__main">
         <Filter onChange={onSelect} value={category} />
-        <FeaturedSection newsList={newsList} />
+        <FeaturedSection articlesList={articlesList} />
         <div className="homepage__main__articles">
-          <Articles newsList={newsList} />
-          <ArticlesSidebar articles={newsList} />
+          <Articles articlesList={articlesList} />
+          <ArticlesSidebar articlesList={articlesList} />
         </div>
       </main>
       <Footer />
@@ -39,9 +43,9 @@ const Home = () => {
 
 export const loader = async ({ params }: { params: { category?: any } }) => {
   if (params.category) {
-    return await getNewsByCategory(params.category);
+    return await getArticlesByCategory(params.category);
   } else {
-    return await getAllNews();
+    return await getAllArticles();
   }
 };
 

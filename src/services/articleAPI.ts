@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 
-export interface News {
+export interface Article {
   author: string;
   categories: string[];
   content: string;
@@ -20,7 +20,7 @@ export interface News {
   id: string;
 }
 
-export const getAllNews = async () => {
+export const getAllArticles = async () => {
   const querySnapshot = await getDocs(collection(firestoreDatabase, "news"));
   return querySnapshot.docs.map((doc) => ({
     ...doc.data(),
@@ -28,7 +28,7 @@ export const getAllNews = async () => {
   }));
 };
 
-export const getNews = async (id: string) => {
+export const getArticle = async (id: string) => {
   const docSnapshot = await getDoc(doc(firestoreDatabase, "news", id));
   if (docSnapshot.exists()) {
     return { ...docSnapshot.data(), id: docSnapshot.id };
@@ -38,7 +38,7 @@ export const getNews = async (id: string) => {
   }
 };
 
-export const getNewsByCategory = async (category: string) => {
+export const getArticlesByCategory = async (category: string) => {
   const newsRef = collection(firestoreDatabase, "news");
   const q = query(newsRef, where("categories", "array-contains", category));
   const querySnapshot = await getDocs(q);
@@ -47,16 +47,3 @@ export const getNewsByCategory = async (category: string) => {
     id: doc.id,
   }));
 };
-
-export const fetchImage = async (article: News) => {
-  try {
-    const url = await getDownloadURL(
-      ref(firebaseStorage, `news_images/${article.image}`)
-    );
-    return url;
-  } catch (err) {
-    console.log(err);
-    return "";
-  }
-};
-

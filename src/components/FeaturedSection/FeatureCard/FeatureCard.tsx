@@ -1,13 +1,13 @@
 import "./FeatureCard.less";
 import { useState, useEffect } from "react";
 import noImage from "../../../assets/no-image.jpg";
-import { fetchImage } from "../../../services/newsAPI";
+import { getImage } from "../../../services/storageAPI";
 import { Link } from "react-router-dom";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
-import { News } from "../../../services/newsAPI";
+import { Article } from "../../../services/articleAPI";
 
 type FeaturedCardProps = {
-  article: News;
+  article: Article;
 };
 
 const FeatureCard: React.FC<FeaturedCardProps> = ({ article }) => {
@@ -15,14 +15,14 @@ const FeatureCard: React.FC<FeaturedCardProps> = ({ article }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      setUrl(await fetchImage(article));
+      setUrl(await getImage(article.image));
     };
     fetch();
   }, []);
 
   return (
     <li>
-      <Link to={`/news/${article.id}`} className="feature-card__link">
+      <Link to={`/article/${article.id}`} className="feature-card__link">
         <div
           className="feature-card"
           style={{ backgroundImage: `url(${url !== "" ? url : noImage})` }}

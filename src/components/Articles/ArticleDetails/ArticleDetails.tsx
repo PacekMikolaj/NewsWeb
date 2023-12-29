@@ -1,10 +1,10 @@
 import "./ArticleDetails.less";
 import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { useEffect, useState } from "react";
-import { fetchImage } from "../../../services/newsAPI";
-import { News } from "../../../services/newsAPI";
+import { getImage } from "../../../services/storageAPI";
+import { Article } from "../../../services/articleAPI";
 type ArticleDetailsProps = {
-  articleData: News;
+  articleData: Article;
 };
 
 const ArticleDetails: React.FC<ArticleDetailsProps> = ({ articleData }) => {
@@ -12,7 +12,7 @@ const ArticleDetails: React.FC<ArticleDetailsProps> = ({ articleData }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      setUrl(await fetchImage(articleData));
+      setUrl(await getImage(articleData.image));
     };
     fetch();
   }, [articleData]);

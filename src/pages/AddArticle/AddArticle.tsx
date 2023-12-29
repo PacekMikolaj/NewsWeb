@@ -1,18 +1,38 @@
 import React, { useContext } from "react";
-import "./AddNews.less";
+import "./AddArticle.less";
 import { UserContext } from "../../UserContext";
 import { Button } from "../../components/UI/Button/Button";
 import { useState } from "react";
+import { uploadImage } from "../../services/storageAPI";
 
-const AddNews = () => {
+type FormDataType = {
+  title: string;
+  content: string;
+  entry: string;
+  image: File | null;
+  category: string;
+};
+
+const AddArticle = () => {
   const userData = useContext(UserContext);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(userData, e.target);
+
+    console.log(formData);
+
+    if (!formData.image) return;
+    let url;
+    try {
+      url = await uploadImage(formData.image.name, formData.image);
+      console.log(url);
+    } catch (err) {
+      console.log(err);
+    }
+    if (!url) return;
   };
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     title: "",
     content: "",
     entry: "",
@@ -36,8 +56,8 @@ const AddNews = () => {
   };
 
   return (
-    <form className="add-news" onSubmit={handleSubmit}>
-      <h1>Add news</h1>
+    <form className="add-article" onSubmit={handleSubmit}>
+      <h1>Add Article</h1>
       <label htmlFor="title">Title</label>
       <input
         type="text"
@@ -62,15 +82,21 @@ const AddNews = () => {
         onChange={handleChange}
       />
       <label htmlFor="image">Image</label>
-      <input type="file" id="image" required onChange={handleChange} />
+      <input
+        type="file"
+        id="image"
+        accept="image/*"
+        required
+        onChange={handleChange}
+      />
       <label htmlFor="category">Category</label>
       <select id="category" value={formData.category} onChange={handleChange}>
         <option value="student">Student</option>
         <option value="Profesor">Profesor</option>
       </select>
-      <Button type="submit">Add news</Button>
+      <Button type="submit">Add Article</Button>
     </form>
   );
 };
 
-export default AddNews;
+export default AddArticle;

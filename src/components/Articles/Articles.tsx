@@ -1,16 +1,16 @@
-import { News } from "../../services/newsAPI";
+import { Article } from "../../services/articleAPI";
 import ArticleMedium from "./ArticleMedium/ArticleMedium";
 import "./Articles.less";
 type ArticlesProps = {
-  newsList: any;
+  articlesList: Article[];
 };
 
-const Articles: React.FC<ArticlesProps> = ({ newsList }) => {
+const Articles: React.FC<ArticlesProps> = ({ articlesList }) => {
   return (
     <section className="articles-container">
       <ul className="articles-container__list">
-        {newsList.map((news: News) => (
-          <ArticleMedium article={news} key={news.id} />
+        {articlesList.map((article: Article) => (
+          <ArticleMedium article={article} key={article.id} />
         ))}
       </ul>
     </section>
