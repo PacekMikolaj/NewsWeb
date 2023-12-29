@@ -1,7 +1,7 @@
-import { testFirebase } from "../firebaseTest";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { getDownloadURL, ref } from "firebase/storage";
 import { firebaseStorage } from "../firebase";
+import { AnimatePresence } from "framer-motion";
 
 import { AuthProvider } from "./AuthContext";
 import Home, { loader as newsLoader } from "./pages/Home/Home";
@@ -9,12 +9,13 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
 import AppLayout from "./pages/AppLayout/AppLayout";
+import SingleArticle, {
+  loader as singleArticleLoader,
+} from "./pages/SingleArticle/SingleArticle";
 
-import { AnimatePresence } from "framer-motion";
-import SingleArticle from "./pages/SingleArticle/SingleArticle";
+
 //TODO
 /*
-  - add loader to images
   - style article details
   - think about routes structure
   - add router actions in forms
@@ -67,14 +68,13 @@ const router = createBrowserRouter([
       {
         path: "/news/:id",
         element: <SingleArticle />,
-        loader: newsLoader,
+        loader: singleArticleLoader,
       },
     ],
   },
 ]);
 
 export default function App() {
-  // testFirebase();
   return (
     <AuthProvider>
       <AnimatePresence>
