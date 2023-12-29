@@ -3,10 +3,21 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { firebaseAuth, firestoreDatabase } from "../../firebase";
-import { setDoc, doc } from "firebase/firestore";
-import { User } from "../pages/Register/Register";
+import { setDoc, doc, getDoc } from "firebase/firestore";
+
+export type User = {
+  id?: string;
+  email: string;
+  password?: string;
+  name: string;
+  surname: string;
+  category: Array<string>;
+};
 
 export const registerUser = async (userData: User) => {
+  if (!userData.email || !userData.password) {
+    return;
+  }
   const userCredential = await createUserWithEmailAndPassword(
     firebaseAuth,
     userData.email,
@@ -26,4 +37,14 @@ export const loginUser = async (email: string, password: string) => {
 
 export const logoutUser = async () => {
   return await firebaseAuth.signOut();
+};
+
+export const getUserData = async (uid: string) => {
+  const docSnapshot = await getDoc(doc(firestoreDatabase, "users", uid));
+  if (docSnapshot.exists()) {
+    return { ...docSnapshot.data(), id: docSnapshot.id };
+  } else {
+    console.log("User does not exist!");
+    return { error: "User does not exist!" };
+  }
 };

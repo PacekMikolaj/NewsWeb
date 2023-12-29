@@ -8,14 +8,7 @@ import Input from "../../components/UI/Input/Input";
 import WelcomePanel from "../../components/WelcomePanel/WelcomePanel";
 import registerImage from "../../assets/register.svg";
 import { motion } from "framer-motion";
-
-export type User = {
-  email: string;
-  password: string;
-  name: string;
-  surname: string;
-  category: Array<string>;
-};
+import { User } from "../../services/userAPI";
 
 const Register = () => {
   const [userData, setUserData] = useState<User>({
@@ -136,7 +129,7 @@ const Register = () => {
 
               <Input
                 type="password"
-                value={userData.password}
+                value={userData.password || ""}
                 className="register__input"
                 onChange={(e) =>
                   setUserData({ ...userData, password: e.target.value })

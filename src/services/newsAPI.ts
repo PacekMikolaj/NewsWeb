@@ -1,8 +1,25 @@
 import { firestoreDatabase } from "../../firebase";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
+
+export interface News {
+  author: string;
+  categories: string[];
+  content: string;
+  date: string;
+  entry: string;
+  image: string;
+  title: string;
+  id: string;
+}
 
 export const getAllNews = async () => {
-  //  READ FIRESTORE
   const querySnapshot = await getDocs(collection(firestoreDatabase, "news"));
   return querySnapshot.docs.map((doc) => ({
     ...doc.data(),
@@ -11,7 +28,6 @@ export const getAllNews = async () => {
 };
 
 export const getNews = async (id: string) => {
-  //  READ FIRESTORE
   const docSnapshot = await getDoc(doc(firestoreDatabase, "news", id));
   if (docSnapshot.exists()) {
     return { ...docSnapshot.data(), id: docSnapshot.id };
@@ -19,4 +35,14 @@ export const getNews = async (id: string) => {
     console.log("No such document!");
     return { error: "No such document!" };
   }
+};
+
+export const getNewsByCategory = async (category: string) => {
+  const newsRef = collection(firestoreDatabase, "news");
+  const q = query(newsRef, where("categories", "array-contains", category));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
 };

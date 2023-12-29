@@ -1,19 +1,17 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { getDownloadURL, ref } from "firebase/storage";
 import { firebaseStorage } from "../firebase";
-import { AnimatePresence } from "framer-motion";
 
-import { AuthProvider } from "./AuthContext";
+import { UserProvider } from "./UserContext";
 import Home, { loader as newsLoader } from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
 import AppLayout from "./pages/AppLayout/AppLayout";
+import { AnimatePresence } from "framer-motion";
 import SingleArticle, {
   loader as singleArticleLoader,
 } from "./pages/SingleArticle/SingleArticle";
-
-
 //TODO
 /*
   - style article details
@@ -50,6 +48,12 @@ const router = createBrowserRouter([
         loader: newsLoader,
       },
       {
+        path: "/:category",
+        element: <Home />,
+        errorElement: <NotFound />,
+        loader: newsLoader,
+      },
+      {
         path: "login",
         element: <Login />,
       },
@@ -76,10 +80,10 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <AuthProvider>
+    <UserProvider>
       <AnimatePresence>
         <RouterProvider router={router} />
       </AnimatePresence>
-    </AuthProvider>
+    </UserProvider>
   );
 }
