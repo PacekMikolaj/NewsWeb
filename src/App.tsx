@@ -1,6 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { getDownloadURL, ref } from "firebase/storage";
-import { firebaseStorage } from "../firebase";
 
 import { UserProvider } from "./UserContext";
 import Home, { loader as newsLoader } from "./pages/Home/Home";
@@ -16,12 +14,8 @@ import AddNews from "./pages/AddNews/AddNews";
 //TODO
 /*
   - style article details
-  - think about routes structure
-  - add router actions in forms
   - think about how to handle errors in pages
   - think about logo and text in header
-  - article sidebar in article details?
-  - think where to storage state
   - think about how to handle errors in forms
 */
 

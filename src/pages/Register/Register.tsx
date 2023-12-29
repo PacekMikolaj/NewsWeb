@@ -109,33 +109,36 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <label htmlFor="student">
-                Student
-                <input
-                  id="student"
-                  type="radio"
-                  name="category"
-                  value="student"
-                  checked={userData.category === "student"}
-                  onChange={(e) =>
-                    setUserData({ ...userData, category: e.target.value })
-                  }
-                />
-              </label>
 
-              <label htmlFor="teacher">
-                Teacher
-                <input
-                  id="teacher"
-                  type="radio"
-                  name="category"
-                  value="teacher"
-                  checked={userData.category === "teacher"}
-                  onChange={(e) =>
-                    setUserData({ ...userData, category: e.target.value })
-                  }
-                />
-              </label>
+              <div className="register__form__radio">
+                <label htmlFor="student">
+                  Student
+                  <input
+                    id="student"
+                    type="radio"
+                    name="category"
+                    value="student"
+                    checked={userData.category === "student"}
+                    onChange={(e) =>
+                      setUserData({ ...userData, category: e.target.value })
+                    }
+                  />
+                </label>
+
+                <label htmlFor="teacher">
+                  Teacher
+                  <input
+                    id="teacher"
+                    type="radio"
+                    name="category"
+                    value="teacher"
+                    checked={userData.category === "teacher"}
+                    onChange={(e) =>
+                      setUserData({ ...userData, category: e.target.value })
+                    }
+                  />
+                </label>
+              </div>
               <Button className="register__form__btn" type="submit">
                 Register
               </Button>

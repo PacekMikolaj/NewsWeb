@@ -42,8 +42,8 @@ const Header = () => {
         <div className="header__login-button-container">
           {isAuthenticated ? (
             <>
-              <Button onClick={handleLogoutClick}>Logout</Button>
               <Button onClick={handleAddArticleClick}>Add article</Button>
+              <Button onClick={handleLogoutClick}>Logout</Button>
             </>
           ) : (
             <>
