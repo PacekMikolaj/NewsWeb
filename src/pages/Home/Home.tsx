@@ -30,6 +30,7 @@ const Home = () => {
 
 export const loader = async () => {
   const newsList = await getNews();
+  console.log(newsList);
   return newsList;
 };
 
