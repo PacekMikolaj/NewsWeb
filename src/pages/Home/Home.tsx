@@ -1,13 +1,12 @@
-import { getAllNews } from "../../services/newsAPI";
-import React, { useEffect, useState, useContext } from "react";
-import Articles from "../../components/Articles/Articles";
+import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
+import Articles from "../../components/Articles/Articles";
 import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
-
-import "./Home.less";
 import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
 import Footer from "../../components/Footer/Footer";
-import { useLoaderData } from "react-router-dom";
+import { getAllNews } from "../../services/newsAPI";
+import "./Home.less";
 
 const Home = () => {
   const newsList = useLoaderData();

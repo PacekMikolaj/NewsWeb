@@ -1,8 +1,8 @@
 import "./ArticleDetails.less";
-import imageUrl from "../../assets/design.png";
-import CategoriesDisplay from "../../components/CategoriesDisplay/CategoriesDisplay";
+import imageUrl from "../../../assets/design.png";
+import CategoriesDisplay from "../../CategoriesDisplay/CategoriesDisplay";
 import { useEffect } from "react";
-import { getNews } from "../../services/newsAPI";
+import { getNews } from "../../../services/newsAPI";
 
 const ArticleDetails = () => {
   useEffect(() => {
