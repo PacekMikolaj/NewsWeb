@@ -4,6 +4,8 @@ import { UserContext } from "../../UserContext";
 import { Button } from "../../components/UI/Button/Button";
 import { useState } from "react";
 import { uploadImage } from "../../services/storageAPI";
+import { Article, uploadArticle } from "../../services/articleAPI";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
 import Select, { GroupBase } from "react-select";
 import { StylesConfig } from "react-select";
@@ -40,8 +42,9 @@ const styles: StylesConfig = {
 };
 
 const AddArticle = () => {
-  const userData = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   const fileRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,14 +52,35 @@ const AddArticle = () => {
     console.log(formData);
 
     if (!formData.image) return;
-    let url;
+    let imageData;
     try {
-      url = await uploadImage(formData.image.name, formData.image);
-      console.log(url);
+      imageData = await uploadImage(formData.image.name, formData.image);
+      console.log(imageData);
     } catch (err) {
       console.log(err);
     }
-    if (!url) return;
+    if (!imageData) return;
+
+    const article: Article = {
+      title: formData.title,
+      content: formData.content,
+      entry: formData.entry,
+      image: imageData.metadata.name,
+      categories: formData.categories,
+      author: `${userData.name} ${userData.surname}`,
+      date: new Date().toISOString().substring(0, 10),
+    };
+
+    uploadArticle(article)
+      .then((response) => {
+        console.log(response);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log(article);
   };
 
   const [formData, setFormData] = useState<FormDataType>({
@@ -64,7 +88,7 @@ const AddArticle = () => {
     content: "",
     entry: "",
     image: null,
-    category: "",
+    categories: [],
   });
 
   const handleChange = (
@@ -93,6 +117,22 @@ const AddArticle = () => {
     { value: "student", label: "Student" },
     { value: "profesor", label: "Profesor" },
   ];
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const category = e.target.value;
+
+    if (e.target.checked) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        categories: [...prevFormData.categories, category],
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        categories: prevFormData.categories.filter((c) => c !== category),
+      }));
+    }
+  };
 
   return (
     <div className="add-article-container" >

@@ -6,6 +6,8 @@ import {
   doc,
   query,
   where,
+  addDoc,
+  orderBy,
 } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 
@@ -17,11 +19,15 @@ export interface Article {
   entry: string;
   image: string;
   title: string;
-  id: string;
+  id?: string;
 }
 
 export const getAllArticles = async () => {
-  const querySnapshot = await getDocs(collection(firestoreDatabase, "news"));
+  const q = query(
+    collection(firestoreDatabase, "news"),
+    orderBy("date", "desc")
+  );
+  const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     id: doc.id,
@@ -40,10 +46,18 @@ export const getArticle = async (id: string) => {
 
 export const getArticlesByCategory = async (category: string) => {
   const newsRef = collection(firestoreDatabase, "news");
-  const q = query(newsRef, where("categories", "array-contains", category));
+  const q = query(
+    newsRef,
+    where("categories", "array-contains", category),
+    orderBy("date", "desc")
+  );
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     id: doc.id,
   }));
+};
+
+export const uploadArticle = (article: Article) => {
+  return addDoc(collection(firestoreDatabase, "news"), article);
 };
