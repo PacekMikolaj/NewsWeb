@@ -98,7 +98,7 @@ const AddArticle = () => {
   };
 
   return (
-    <div className="add-article-container" >
+    <div className="add-article-container">
       <form className="add-article" onSubmit={handleSubmit}>
         <h3 className="add-article__title">Add Article</h3>
         <div className="add-article__inputs-wrapper">
@@ -119,7 +119,24 @@ const AddArticle = () => {
             <label className="add-article__label" htmlFor="category">
               Category
             </label>
-
+            <label>
+              <input
+                type="checkbox"
+                value="Student"
+                checked={formData.categories.includes("Student")}
+                onChange={handleCategoryChange}
+              />
+              Student
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Professor"
+                checked={formData.categories.includes("Professor")}
+                onChange={handleCategoryChange}
+              />
+              Professor
+            </label>
           </div>
         </div>
         <div className="add-article__input-wrapper">
@@ -167,7 +184,7 @@ const AddArticle = () => {
             }}
           >
             <span className="add-article__drop-container__title">
-              Drop files here
+              Drop files here``
             </span>
             <span className="add-article__drop-container__subtitle">or</span>
             <input
