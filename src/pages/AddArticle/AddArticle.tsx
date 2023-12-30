@@ -7,38 +7,13 @@ import { uploadImage } from "../../services/storageAPI";
 import { Article, uploadArticle } from "../../services/articleAPI";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
-import Select, { GroupBase } from "react-select";
-import { StylesConfig } from "react-select";
 
 type FormDataType = {
   title: string;
   content: string;
   entry: string;
   image: File | null;
-  category: string;
-};
-
-const styles: StylesConfig = {
-  control: (baseStyles, state) => ({
-    ...baseStyles,
-    fontSize: "1.4rem",
-    height: "4.4rem",
-    cursor: "pointer",
-    wordBreak: "break-word",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-  }),
-  option: (baseStyles, state) => ({
-    ...baseStyles,
-    fontSize: "1.4rem",
-    textTransform: "capitalize",
-    cursor: "pointer",
-  }),
-  menu: (baseStyles, state) => ({
-    ...baseStyles,
-    zIndex: 2,
-  }),
+  categories: string[];
 };
 
 const AddArticle = () => {
@@ -106,18 +81,6 @@ const AddArticle = () => {
     });
   };
 
-  const handleSelectChange = (e: any) => {
-    setFormData({
-      ...formData,
-      category: e.value,
-    });
-  };
-
-  const options = [
-    { value: "student", label: "Student" },
-    { value: "profesor", label: "Profesor" },
-  ];
-
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const category = e.target.value;
 
@@ -157,13 +120,6 @@ const AddArticle = () => {
               Category
             </label>
 
-            <Select
-              placeholder="Select category"
-              styles={styles}
-              id="category"
-              onChange={handleSelectChange}
-              options={options}
-            />
           </div>
         </div>
         <div className="add-article__input-wrapper">
