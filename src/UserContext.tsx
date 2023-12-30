@@ -29,7 +29,7 @@ interface UserProviderProps {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user] = useAuthState(firebaseAuth);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<any>(defaultContext);
   const isAuthenticated = Boolean(user);
 
   useEffect(() => {

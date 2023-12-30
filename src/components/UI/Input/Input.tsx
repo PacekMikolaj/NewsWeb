@@ -3,12 +3,13 @@ import "./Input.less";
 
 type InputProps = {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: JSX.Element;
   className?: string;
   required?: boolean;
+  id?: string;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   icon,
   className = "",
   required = false,
+  id,
 }) => {
   return (
     <div className={`${className} input-container`} style={ icon ? {
@@ -34,6 +36,7 @@ const Input: React.FC<InputProps> = ({
         value={value}
         onChange={onChange}
         required={required}
+        id={id}
       />
   </div>
   );

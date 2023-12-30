@@ -29,7 +29,7 @@ const Home = () => {
     <div className="homepage">
       {isAuthenticated ? "ZALOGOWANY" : "NIE ZALOGOWANY"}
       <main className="homepage__main">
-        <Filter onChange={onSelect} value={category} />
+        {isAuthenticated && <Filter onChange={onSelect} value={category} />}
         <FeaturedSection articlesList={articlesList} />
         <div className="homepage__main__articles">
           <Articles articlesList={articlesList} />

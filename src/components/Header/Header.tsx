@@ -36,9 +36,9 @@ const Header = () => {
               src={logo}
               alt="Logo"
             />
-            <h1 className="header__logo-container__title">News web</h1>
           </div>
         </Link>
+            {/* <h1 className="header__logo-container__title">News web</h1> */}
         <div className="header__login-button-container">
           {isAuthenticated ? (
             <>
