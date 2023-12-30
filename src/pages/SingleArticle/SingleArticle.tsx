@@ -4,6 +4,7 @@ import { Article } from "../../services/articleAPI";
 import { getAllArticles, getArticle } from "../../services/articleAPI";
 import ArticleDetails from "../../components/Articles/ArticleDetails/ArticleDetails";
 import ArticlesSidebar from "../../components/Articles/ArticlesSidebar/ArticlesSidebar";
+import "./SingleArticle.less";
 
 interface LoaderData {
   article: Article;
