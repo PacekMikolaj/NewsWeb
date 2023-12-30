@@ -7,7 +7,7 @@ import logo from "../../assets/logo.png";
 import { logoutUser } from "../../services/userAPI";
 
 const Header = () => {
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated, userData } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -42,7 +42,9 @@ const Header = () => {
         <div className="header__login-button-container">
           {isAuthenticated ? (
             <>
+              {/* {userData.category === "admin" ? ( */}
               <Button onClick={handleAddArticleClick}>Add article</Button>
+              {/* ) : null} */}
               <Button onClick={handleLogoutClick}>Logout</Button>
             </>
           ) : (
