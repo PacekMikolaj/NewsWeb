@@ -4,9 +4,12 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 0 8rem;
-  max-width: 100rem;
+  max-width: 130rem;
   margin: 0 auto;
+
+  &__image {
+    width: 34%;
+  }
 
   .add-article {
     display: flex;
@@ -16,9 +19,6 @@
     padding: 2rem;
     margin-top: 10rem;
     margin-bottom: 2rem;
-    border-radius: var(--border-radius-default);
-    background-color: var(--background-secondary);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 
     &__inputs-wrapper {
       display: flex;
@@ -33,6 +33,13 @@
       gap: 0.8rem;
     }
 
+    &__checkboxes-wrapper {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      gap: 1rem;
+    }
+
     &__input {
       max-width: none;
     }
@@ -44,6 +51,48 @@
     &__label {
       font-weight: 600;
       font-size: 1.6rem;
+    }
+
+    &__checkbox-wrapper {
+      &__label {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--border);
+        text-align: center;
+        padding: 1.2rem 3em;
+        font-size: 1.6rem;
+        background-color: var(--background-secondary);
+        border-radius: var(--border-radius-default);
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.3s;
+
+        &:hover {
+          background: var(--gray-light);
+        }
+      }
+
+      &__checkbox {
+        display: none;
+        opacity: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+
+        &:focus + label {
+          box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+        }
+        &:active + label {
+          background-color: #ddd;
+        }
+        &:checked + label {
+          color: var(--text-white);
+          background-color: var(--color-primary);
+          border-color: var(--color-primary);
+        }
+      }
     }
 
     &__textarea {
@@ -110,7 +159,6 @@
       padding: 2rem;
       border-radius: 1rem;
       border: 2px dashed var(--gray-dark);
-      color: #444;
       cursor: pointer;
       transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
       &:hover {

@@ -7,6 +7,7 @@ import { uploadImage } from "../../services/storageAPI";
 import { Article, uploadArticle } from "../../services/articleAPI";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
+import image from '../../assets/add2.svg';
 
 type FormDataType = {
   title: string;
@@ -83,7 +84,7 @@ const AddArticle = () => {
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const category = e.target.value;
-
+    
     if (e.target.checked) {
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -117,26 +118,42 @@ const AddArticle = () => {
           </div>
           <div className="add-article__input-wrapper">
             <label className="add-article__label" htmlFor="category">
-              Category
+              Choose category
             </label>
-            <label>
-              <input
-                type="checkbox"
-                value="Student"
-                checked={formData.categories.includes("Student")}
-                onChange={handleCategoryChange}
-              />
-              Student
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                value="Professor"
-                checked={formData.categories.includes("Professor")}
-                onChange={handleCategoryChange}
-              />
-              Professor
-            </label>
+            <div className="add-article__checkboxes-wrapper">
+              <div className="add-article__checkbox-wrapper">
+                <input
+                  id="category-1"
+                  className="add-article__checkbox-wrapper__checkbox"
+                  type="checkbox"
+                  value="Student"
+                  checked={formData.categories.includes("Student")}
+                  onChange={handleCategoryChange}
+                />
+                <label
+                  htmlFor="category-1"
+                  className="add-article__checkbox-wrapper__label"
+                >
+                  Student
+                </label>
+              </div>
+              <div className="add-article__checkbox-wrapper">
+                <input
+                  className="add-article__checkbox-wrapper__checkbox"
+                  id="category-2"
+                  type="checkbox"
+                  value="Professor"
+                  checked={formData.categories.includes("Professor")}
+                  onChange={handleCategoryChange}
+                />
+                <label
+                  htmlFor="category-2"
+                  className="add-article__checkbox-wrapper__label"
+                >
+                  Professor
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div className="add-article__input-wrapper">
@@ -184,7 +201,7 @@ const AddArticle = () => {
             }}
           >
             <span className="add-article__drop-container__title">
-              Drop files here``
+              Drop files here
             </span>
             <span className="add-article__drop-container__subtitle">or</span>
             <input
@@ -201,6 +218,11 @@ const AddArticle = () => {
           Submit
         </Button>
       </form>
+      <img
+        className="add-article-container__image"
+        src={image}
+        alt="add article iamge"
+      />
     </div>
   );
 };

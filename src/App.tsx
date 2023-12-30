@@ -17,6 +17,7 @@ import AddArticle from "./pages/AddArticle/AddArticle";
   - think about how to handle errors in pages
   - think about logo and text in header
   - think about how to handle errors in forms
+  - block ability to go to the add-article page if user is not logged in
 */
 
 const router = createBrowserRouter([
