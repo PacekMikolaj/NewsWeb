@@ -5,6 +5,9 @@ import {
   query,
   where,
   addDoc,
+  arrayRemove,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 
 export interface Notification {
@@ -23,9 +26,13 @@ export const listenForNotifications = (userId: string) => {
 
   const unsubscribe = onSnapshot(notificationQuery, (querySnapshot) => {
     console.log(querySnapshot.docChanges());
-    querySnapshot.docChanges().forEach((change) => {
+    querySnapshot.docChanges().forEach(async (change) => {
       if (change.type === "added") {
         window.alert("You have a new notification!");
+        // const docRef = doc(firestoreDatabase, "notifications", change.doc.id);
+        // await updateDoc(docRef, {
+        //   users: arrayRemove(userId),
+        // });
       }
     });
   });
