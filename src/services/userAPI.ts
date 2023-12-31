@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { firebaseAuth, firestoreDatabase } from "../../firebase";
-import { setDoc, doc, getDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc, getDocs, collection } from "firebase/firestore";
 
 export type User = {
   id?: string;
@@ -52,4 +52,12 @@ export const getUserData = async (uid: string) => {
     console.log("User does not exist!");
     return { error: "User does not exist!" };
   }
+};
+
+export const getAllUsers = async () => {
+  const querySnapshot = await getDocs(collection(firestoreDatabase, "users"));
+  return querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
 };

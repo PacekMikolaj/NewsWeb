@@ -5,9 +5,15 @@ import { Button } from "../../components/UI/Button/Button";
 import { useState } from "react";
 import { uploadImage } from "../../services/storageAPI";
 import { Article, uploadArticle } from "../../services/articleAPI";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
-import image from '../../assets/add2.svg';
+import image from "../../assets/add2.svg";
+import { getAllUsers } from "../../services/userAPI";
+import { User } from "../../services/userAPI";
+import Select, { MultiValue } from "react-select";
+import { styles as selectStyles } from "../../components/UI/Filter/Filter";
+import { addNotification } from "../../services/notificationsAPI";
+import { Notification } from "../../services/notificationsAPI";
 
 type FormDataType = {
   title: string;
@@ -19,44 +25,60 @@ type FormDataType = {
 
 const AddArticle = () => {
   const { userData } = useContext(UserContext);
+  const allUsersList = useLoaderData() as User[];
   const fileRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const usersToNotificate = useRef<string[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     console.log(formData);
 
-    if (!formData.image) return;
-    let imageData;
-    try {
-      imageData = await uploadImage(formData.image.name, formData.image);
-      console.log(imageData);
-    } catch (err) {
-      console.log(err);
-    }
-    if (!imageData) return;
-
+    // if (!formData.image) return;
+    // let imageData;
+    // try {
+    //   imageData = await uploadImage(formData.image.name, formData.image);
+    //   console.log(imageData);
+    // } catch (err) {
+    //   console.log(err);
+    //   return;
+    // }
+    // if (!imageData) return;
+    //@ts-ignore
     const article: Article = {
       title: formData.title,
       content: formData.content,
       entry: formData.entry,
-      image: imageData.metadata.name,
+      // image: imageData.metadata.name,
       categories: formData.categories,
       author: `${userData.name} ${userData.surname}`,
       date: new Date().toISOString().substring(0, 10),
     };
 
-    uploadArticle(article)
-      .then((response) => {
-        console.log(response);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (usersToNotificate.current.length > 0) {
+      const notification: Notification = {
+        content: article.title,
+        date: article.date,
+        author: article.author,
+        users: usersToNotificate.current,
+      };
+      // console.log(notification);
+      try {
+        await addNotification(notification);
+      } catch (err) {
+        console.log(err);
+        return;
+      }
+    }
 
-    console.log(article);
+    // try {
+    //   await uploadArticle(article);
+    //   navigate("/");
+    // } catch (err) {
+    //   console.log(err);
+    //   return;
+    // }
   };
 
   const [formData, setFormData] = useState<FormDataType>({
@@ -84,7 +106,7 @@ const AddArticle = () => {
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const category = e.target.value;
-    
+
     if (e.target.checked) {
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -96,6 +118,12 @@ const AddArticle = () => {
         categories: prevFormData.categories.filter((c) => c !== category),
       }));
     }
+  };
+
+  const handleSelectChange = (e: MultiValue<unknown>) => {
+    usersToNotificate.current = e.map(
+      (user: unknown) => (user as { value: string }).value
+    );
   };
 
   return (
@@ -182,6 +210,7 @@ const AddArticle = () => {
             onChange={handleChange}
           />
         </div>
+        {/* zepsuty jest ten input, bo w formData nie ma tego zdjęcia */}
         <div className="add-article__input-wrapper">
           <label
             htmlFor="images"
@@ -213,6 +242,22 @@ const AddArticle = () => {
             />
           </label>
         </div>
+        <div className="add-article__input-wrapper">
+          <label className="add-article__label" htmlFor="notification">
+            Select users to notificate{" "}
+          </label>
+          <Select
+            placeholder="Select users"
+            className="add-article__select"
+            isMulti
+            styles={selectStyles}
+            onChange={handleSelectChange}
+            options={allUsersList.map((user) => ({
+              value: user.id,
+              label: `${user.name} ${user.surname}`,
+            }))}
+          />
+        </div>
 
         <Button className="add-article__btn" type="submit">
           Submit
@@ -225,6 +270,10 @@ const AddArticle = () => {
       />
     </div>
   );
+};
+
+export const loader = async () => {
+  return await getAllUsers();
 };
 
 export default AddArticle;

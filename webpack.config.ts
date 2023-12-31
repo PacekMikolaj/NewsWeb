@@ -19,7 +19,7 @@ export const config: Configuration = {
     },
     historyApiFallback: true,
     compress: true,
-    port: 3000,
+    port: 4000,
   },
   module: {
     rules: [
@@ -43,14 +43,14 @@ export const config: Configuration = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'images/[name][ext]'
-        }
+          filename: "images/[name][ext]",
+        },
       },
       {
         test: /\.svg$/,
-        use: ['svg-url-loader'],
+        use: ["svg-url-loader"],
       },
     ],
   },

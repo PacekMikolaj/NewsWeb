@@ -18,17 +18,18 @@ export const styles: StylesConfig = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
-
   }),
   option: (baseStyles, state) => ({
     ...baseStyles,
     fontSize: "1.4rem",
     textTransform: "capitalize",
     cursor: "pointer",
+    width: "14rem",
   }),
   menu: (baseStyles, state) => ({
     ...baseStyles,
     zIndex: 2,
+    width: "14rem",
   }),
 };
 
@@ -37,7 +38,6 @@ const Filter: React.FC<FilterProps> = ({ onChange, value }) => {
     { value: value, label: value },
     { value: "", label: "All" },
   ];
-
 
   return (
     <div className="filter-component">
