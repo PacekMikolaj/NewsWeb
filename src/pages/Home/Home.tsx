@@ -14,6 +14,7 @@ import Filter from "../../components/UI/Filter/Filter";
 import { Article } from "../../services/articleAPI";
 
 const Home = () => {
+  console.log("jestem w home");
   const articlesList: Array<Article> = useLoaderData() as Array<Article>;
   const {
     isAuthenticated,
@@ -41,10 +42,14 @@ const Home = () => {
   );
 };
 
+// to tez nie działa
 export const loader = async ({ params }: { params: { category?: any } }) => {
+  console.log(params);
   if (params.category) {
+    console.log("jestem w ifie");
     return await getArticlesByCategory(params.category);
   } else {
+    console.log("jestem w else");
     return await getAllArticles();
   }
 };
