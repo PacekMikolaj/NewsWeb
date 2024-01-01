@@ -35,22 +35,22 @@ const AddArticle = () => {
 
     console.log(formData);
 
-    // if (!formData.image) return;
-    // let imageData;
-    // try {
-    //   imageData = await uploadImage(formData.image.name, formData.image);
-    //   console.log(imageData);
-    // } catch (err) {
-    //   console.log(err);
-    //   return;
-    // }
-    // if (!imageData) return;
+    if (!formData.image) return;
+    let imageData;
+    try {
+      imageData = await uploadImage(formData.image.name, formData.image);
+      console.log(imageData);
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+    if (!imageData) return;
     //@ts-ignore
     const article: Article = {
       title: formData.title,
       content: formData.content,
       entry: formData.entry,
-      // image: imageData.metadata.name,
+      image: imageData.metadata.name,
       categories: formData.categories,
       author: `${userData.name} ${userData.surname}`,
       date: new Date().toISOString().substring(0, 10),
@@ -126,6 +126,21 @@ const AddArticle = () => {
     );
   };
 
+  const handleInputFileChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const value =
+      (e.target as HTMLInputElement)?.type === "file"
+        ? (e.target as HTMLInputElement)?.files?.[0]
+        : (e.target as HTMLInputElement)?.value;
+    setFormData({
+      ...formData,
+      [e.target.id]: value,
+    });
+  };
+
   return (
     <div className="add-article-container">
       <form className="add-article" onSubmit={handleSubmit}>
@@ -194,7 +209,7 @@ const AddArticle = () => {
             id="entry"
             required
             value={formData.entry}
-            onChange={handleChange}
+            onChange={handleInputFileChange}
           />
         </div>
         <div className="add-article__input-wrapper">
@@ -210,7 +225,6 @@ const AddArticle = () => {
             onChange={handleChange}
           />
         </div>
-        {/* zepsuty jest ten input, bo w formData nie ma tego zdjęcia */}
         <div className="add-article__input-wrapper">
           <label
             htmlFor="images"
@@ -234,11 +248,11 @@ const AddArticle = () => {
             </span>
             <span className="add-article__drop-container__subtitle">or</span>
             <input
-              ref={fileRef}
               type="file"
-              id="images"
+              id="image"
               accept="image/*"
               required
+              onChange={handleChange}
             />
           </label>
         </div>

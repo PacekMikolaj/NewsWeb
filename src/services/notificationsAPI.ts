@@ -29,10 +29,10 @@ export const listenForNotifications = (userId: string) => {
     querySnapshot.docChanges().forEach(async (change) => {
       if (change.type === "added") {
         window.alert("You have a new notification!");
-        // const docRef = doc(firestoreDatabase, "notifications", change.doc.id);
-        // await updateDoc(docRef, {
-        //   users: arrayRemove(userId),
-        // });
+        const docRef = doc(firestoreDatabase, "notifications", change.doc.id);
+        await updateDoc(docRef, {
+          users: arrayRemove(userId),
+        });
       }
     });
   });

@@ -45,17 +45,20 @@ export const getArticle = async (id: string) => {
 };
 
 export const getArticlesByCategory = async (category: string) => {
-  const newsRef = collection(firestoreDatabase, "news");
   const q = query(
-    newsRef,
-    where("categories", "array-contains", category),
-    orderBy("date", "desc")
+    collection(firestoreDatabase, "news"),
+    where("categories", "array-contains", category)
   );
+
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => ({
-    ...doc.data(),
+  const articles: Article[] = querySnapshot.docs.map((doc) => ({
+    ...(doc.data() as Article),
     id: doc.id,
   }));
+
+  return articles.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 };
 
 export const uploadArticle = (article: Article) => {

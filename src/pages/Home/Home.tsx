@@ -47,6 +47,8 @@ export const loader = async ({ params }: { params: { category?: any } }) => {
   console.log(params);
   if (params.category) {
     console.log("jestem w ifie");
+    // return await getAllArticles();
+
     return await getArticlesByCategory(params.category);
   } else {
     console.log("jestem w else");
