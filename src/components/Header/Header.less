@@ -15,6 +15,12 @@
   background-color: var(--background-dark);
   z-index: 4;
 
+  &__logo-and-notifcation-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
   &__logo-container {
     position: relative;
     display: flex;
@@ -34,13 +40,13 @@
       color: var(--text-white);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: .3rem;
+      letter-spacing: 0.3rem;
       font-size: 2.8rem;
       flex-grow: 1;
       text-align: center;
     }
   }
-  
+
   &__login-button-container {
     display: flex;
     justify-content: center;
@@ -48,4 +54,3 @@
     gap: 1rem;
   }
 }
-

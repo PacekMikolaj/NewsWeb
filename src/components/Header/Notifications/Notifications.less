@@ -1,0 +1,49 @@
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.notification {
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: 30px;
+    position: relative;
+  }
+
+  &__new-notification::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: pulse 2s infinite;
+  }
+
+  &__icon {
+    font-size: 2.4rem;
+    color: var(--text-white);
+    cursor: pointer;
+    color: white;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+#react-tiny-popover-container {
+  z-index: 5;
+}

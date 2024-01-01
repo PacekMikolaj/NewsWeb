@@ -56,29 +56,32 @@ const AddArticle = () => {
       date: new Date().toISOString().substring(0, 10),
     };
 
-    if (usersToNotificate.current.length > 0) {
-      const notification: Notification = {
-        content: article.title,
-        date: article.date,
-        author: article.author,
-        users: usersToNotificate.current,
-      };
-      // console.log(notification);
-      try {
-        await addNotification(notification);
-      } catch (err) {
-        console.log(err);
-        return;
-      }
+    let articleId = "";
+
+    try {
+      const addedArticle = await uploadArticle(article);
+      articleId = addedArticle.id;
+    } catch (err) {
+      console.log(err);
+      return;
     }
 
-    // try {
-    //   await uploadArticle(article);
-    //   navigate("/");
-    // } catch (err) {
-    //   console.log(err);
-    //   return;
-    // }
+    if (usersToNotificate.current.length === 0) return;
+    const notification: Notification = {
+      content: article.title,
+      date: article.date,
+      author: article.author,
+      users: usersToNotificate.current,
+      articleId: articleId,
+    };
+    // console.log(notification);
+    try {
+      await addNotification(notification);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   };
 
   const [formData, setFormData] = useState<FormDataType>({

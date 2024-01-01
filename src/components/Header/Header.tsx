@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { Button } from "../UI/Button/Button";
 import logo from "../../assets/logo.png";
 import { logoutUser } from "../../services/userAPI";
+import Notifications from "./Notifications/Notifications";
 
 const Header = () => {
-  const { isAuthenticated, userData } = useContext(UserContext);
+  const { isAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -29,16 +30,19 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="header__logo-container">
-            <img
-              className="header__logo-container__logo"
-              src={logo}
-              alt="Logo"
-            />
-          </div>
-        </Link>
-            {/* <h1 className="header__logo-container__title">News web</h1> */}
+        <div className="header__logo-and-notifcation-container">
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div className="header__logo-container">
+              <img
+                className="header__logo-container__logo"
+                src={logo}
+                alt="Logo"
+              />
+            </div>
+          </Link>
+          {isAuthenticated ? <Notifications /> : null}
+        </div>
+        {/* <h1 className="header__logo-container__title">News web</h1> */}
         <div className="header__login-button-container">
           {isAuthenticated ? (
             <>
