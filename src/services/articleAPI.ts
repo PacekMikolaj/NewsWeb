@@ -8,6 +8,7 @@ import {
   where,
   addDoc,
   orderBy,
+  limit,
 } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 
@@ -25,7 +26,8 @@ export interface Article {
 export const getAllArticles = async () => {
   const q = query(
     collection(firestoreDatabase, "news"),
-    orderBy("date", "desc")
+    orderBy("date", "desc"),
+    limit(20)
   );
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => ({
@@ -47,7 +49,8 @@ export const getArticle = async (id: string) => {
 export const getArticlesByCategory = async (category: string) => {
   const q = query(
     collection(firestoreDatabase, "news"),
-    where("categories", "array-contains", category)
+    where("categories", "array-contains", category),
+    limit(20)
   );
 
   const querySnapshot = await getDocs(q);

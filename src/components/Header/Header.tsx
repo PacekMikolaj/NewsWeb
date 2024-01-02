@@ -8,7 +8,7 @@ import { logoutUser } from "../../services/userAPI";
 import Notifications from "./Notifications/Notifications";
 
 const Header = () => {
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated, userData } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -21,6 +21,7 @@ const Header = () => {
 
   const handleLogoutClick = () => {
     logoutUser();
+    navigate("/");
   };
 
   const handleRegisterClick = () => {
@@ -41,14 +42,14 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        {/* <h1 className="header__logo-container__title">News web</h1> */}
+
         <div className="header__login-button-container">
           {isAuthenticated ? <Notifications /> : null}
           {isAuthenticated ? (
             <>
-              {/* {userData.category === "admin" ? ( */}
-              <Button onClick={handleAddArticleClick}>Add article</Button>
-              {/* ) : null} */}
+              {userData.category === "admin" ? (
+                <Button onClick={handleAddArticleClick}>Add article</Button>
+              ) : null}
               <Button onClick={handleLogoutClick}>Logout</Button>
             </>
           ) : (
