@@ -11,4 +11,29 @@
       margin: 0 auto;
     }
   }
+
+  @media (max-width: 1050px) {
+    .articles-sidebar {
+      display: none;
+    }
+
+    &__main {
+      &__articles {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    .articles-sidebar {
+      display: block;
+    }
+    &__main {
+      &__articles {
+        .articles-container {
+          display: none;
+        }
+      }
+    }
+  }
 }

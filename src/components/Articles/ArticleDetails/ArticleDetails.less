@@ -34,9 +34,18 @@
   &__figure {
     margin: 2.4rem 0;
     &__image {
-      height: 40vh;
+      height: 40rem;
       object-fit: cover;
+      object-position: center;
       width: 100%;
+
+      @media (max-width: 800px){
+        height: 30rem;
+      }
+
+      @media (max-width: 600px){
+        height: 20rem;
+      }
     }
   }
 

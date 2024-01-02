@@ -3,4 +3,12 @@
   max-width: 130rem;
   display: grid;
   grid-template-columns: 75% 1fr;
+
+  @media (max-width: 1050px) {
+  grid-template-columns: 1fr;
+
+    .articles-sidebar {
+      display: none;
+    }
+  }
 }
