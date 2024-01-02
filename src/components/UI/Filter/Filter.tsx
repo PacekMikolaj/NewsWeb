@@ -12,7 +12,7 @@ export const styles: StylesConfig = {
   control: (baseStyles, state) => ({
     ...baseStyles,
     fontSize: "1.4rem",
-    width: "14rem",
+    width: "16rem",
     cursor: "pointer",
     wordBreak: "break-word",
     textOverflow: "ellipsis",

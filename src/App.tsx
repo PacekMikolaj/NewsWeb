@@ -15,7 +15,9 @@ import AddArticle, {
 } from "./pages/AddArticle/AddArticle";
 //TODO
 /*
-  - style article details
+  - add responsiveness
+  - add styles to the notification component
+  - addstyles in the article details content
   - think about how to handle errors in pages
   - think about logo and text in header
   - think about how to handle errors in forms

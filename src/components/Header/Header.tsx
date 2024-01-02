@@ -40,10 +40,10 @@ const Header = () => {
               />
             </div>
           </Link>
-          {isAuthenticated ? <Notifications /> : null}
         </div>
         {/* <h1 className="header__logo-container__title">News web</h1> */}
         <div className="header__login-button-container">
+          {isAuthenticated ? <Notifications /> : null}
           {isAuthenticated ? (
             <>
               {/* {userData.category === "admin" ? ( */}
