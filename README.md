@@ -33,11 +33,13 @@ We are a team of students passionate about programming and creating useful tools
 Check our other projects at:
 
 https://github.com/PacekMikolaj?tab=repositories
+
 https://github.com/DominikWedzina?tab=repositories
 
 Contact us!
 
 https://www.linkedin.com/in/miko%C5%82aj-pacek-a5a339210/
+
 https://www.linkedin.com/in/dominik-w%C4%99dzina/
 
 ## License
