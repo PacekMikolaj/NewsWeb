@@ -3,7 +3,11 @@
   margin: 2rem;
   background-color: var(--background-secondary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.185);
-  &__header {
+
+  @media (max-width: 1050px){
+    margin: 0;
+    padding: 1.8rem;
+    box-shadow: none;
   }
 
   &__title {

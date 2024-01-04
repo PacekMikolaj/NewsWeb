@@ -87,7 +87,7 @@ const Login = () => {
       <WelcomePanel
         image={loginImage}
         title="Join Our Community!"
-        content="Discover a world of knowledge and opportunity. Join us today and
+        content="Join us today and
         start exploring endless possibilities!"
         btnText="Sign up"
         path="/register"

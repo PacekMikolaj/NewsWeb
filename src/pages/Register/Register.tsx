@@ -150,7 +150,7 @@ const Register = () => {
       <WelcomePanel
         image={registerImage}
         title="Back to the Latest News!"
-        content="Stay informed with the latest news! Return to our community for fresh insights and comprehensive analysis."
+        content="Stay informed with the latest news! Return to our community for fresh insights."
         btnText="Sign In"
         path="/login"
         side="right"
