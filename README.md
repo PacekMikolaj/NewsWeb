@@ -17,6 +17,15 @@ By logging you are also able to recive notifications.
 
 As an admin, you can add articles to the News Web, and send notifications to users about newly added article.
 
+## Built With
+
+- [JavaScript] - The programming language used
+- [TypeScript] - Superset of JavaScript that adds static types
+- [React] - The web framework used
+- [Firebase] - Backend as a Service (BaaS) used
+- [Less] - CSS pre-processor used
+- [Webpack] - Module bundler
+
 ## About Us
 
 We are a team of students passionate about programming and creating useful tools for our university community. This project is a result of our dedication to learning and improving our coding skills.

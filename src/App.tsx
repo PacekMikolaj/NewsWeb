@@ -13,6 +13,8 @@ import SingleArticle, {
 import AddArticle, {
   loader as addArticleLoader,
 } from "./pages/AddArticle/AddArticle";
+import "./globals.less";
+
 //TODO
 /*
   - add responsiveness

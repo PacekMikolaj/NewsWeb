@@ -1,7 +1,7 @@
 import * as path from "path";
-import CopyWebpackPlugin from "copy-webpack-plugin";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 // import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 
 interface Configuration extends WebpackConfiguration {
@@ -29,24 +29,31 @@ export const config: Configuration = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.less$/i,
+        test: /\.less$/,
         use: [
-          // compiles Less to CSS
-          "style-loader",
-          "css-loader",
-          "less-loader",
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "less-loader",
+          },
         ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        type: "asset/resource",
-        generator: {
-          filename: "images/[name][ext]",
-        },
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              outputPath: "images",
+              publicPath: "images",
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/,
@@ -62,6 +69,13 @@ export const config: Configuration = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+      favicon: "public/images/news-fav.png",
+      inject: true,
+    }),
+  ],
 };
 
 export default config;
