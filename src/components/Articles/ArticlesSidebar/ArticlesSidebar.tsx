@@ -8,7 +8,6 @@ type ArticlesSidebarProps = {
 };
 
 const ArticlesSidebar: React.FC<ArticlesSidebarProps> = ({ articlesList }) => {
-  console.log(articlesList);
   return (
     <aside className="articles-sidebar">
       <ul className="articles-sidebar__list">

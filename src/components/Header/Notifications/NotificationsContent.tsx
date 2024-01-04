@@ -14,7 +14,6 @@ const NotificationsContent = ({
   const { userData } = useContext(UserContext);
 
   const navigate = useNavigate();
-  console.log(notifications);
 
   const notificationClick = (notification: NotificationType) => {
     if (notification.id && userData.id) {

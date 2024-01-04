@@ -53,14 +53,6 @@
       font-size: 1.6rem;
     }
 
-    &__select {
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: var(--border-radius-default);
-      margin-left: 0;
-      width: 100%;
-    }
-
     &__checkbox-wrapper {
       &__label {
         display: block;
@@ -194,6 +186,27 @@
         font-weight: bold;
         text-align: center;
         transition: color 0.2s ease-in-out;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    & {
+      width: 100%;
+    }
+
+    &__image {
+      display: none;
+    }
+
+    .add-article {
+      &__inputs-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      &__input-wrapper {
+        width: 100%;
       }
     }
   }

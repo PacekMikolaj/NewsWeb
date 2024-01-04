@@ -26,7 +26,6 @@ const Register = () => {
     event.preventDefault();
     registerUser(userData)
       .then((response) => {
-        console.log(response);
         navigate("/");
       })
       .catch((error) => {

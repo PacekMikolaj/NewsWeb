@@ -27,7 +27,6 @@ export const loader = async ({ params }: { params: Params }) => {
     getAllArticles(),
     getArticle(params.id ?? ""),
   ]);
-  console.log(data);
 
   return { articlesList: data[0], article: data[1] };
 };

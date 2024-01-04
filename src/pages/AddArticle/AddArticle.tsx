@@ -10,8 +10,7 @@ import Input from "../../components/UI/Input/Input";
 import image from "../../assets/add2.svg";
 import { getAllUsers } from "../../services/userAPI";
 import { User } from "../../services/userAPI";
-import Select, { MultiValue } from "react-select";
-import { styles as selectStyles } from "../../components/UI/Filter/Filter";
+import Select, { MultiValue, StylesConfig } from "react-select";
 import { addNotification } from "../../services/notificationsAPI";
 import { Notification } from "../../services/notificationsAPI";
 
@@ -21,6 +20,32 @@ type FormDataType = {
   entry: string;
   image: File | null;
   categories: string[];
+};
+
+export const selectStyles: StylesConfig = {
+  control: (baseStyles, state) => ({
+    ...baseStyles,
+    fontSize: "1.4rem",
+    // width: "32rem",
+    maxWidth: "48rem",
+    cursor: "pointer",
+    wordBreak: "break-word",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  }),
+  option: (baseStyles, state) => ({
+    ...baseStyles,
+    fontSize: "1.4rem",
+    textTransform: "capitalize",
+    cursor: "pointer",
+    width: "14rem",
+  }),
+  menu: (baseStyles, state) => ({
+    ...baseStyles,
+    zIndex: 2,
+    width: "14rem",
+  }),
 };
 
 const AddArticle = () => {
@@ -33,19 +58,16 @@ const AddArticle = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(formData);
-
     if (!formData.image) return;
     let imageData;
     try {
       imageData = await uploadImage(formData.image.name, formData.image);
-      console.log(imageData);
     } catch (err) {
       console.log(err);
       return;
     }
     if (!imageData) return;
-    //@ts-ignore
+
     const article: Article = {
       title: formData.title,
       content: formData.content,
@@ -74,7 +96,7 @@ const AddArticle = () => {
       users: usersToNotificate.current,
       articleId: articleId,
     };
-    // console.log(notification);
+
     try {
       await addNotification(notification);
       navigate("/");
@@ -237,7 +259,6 @@ const AddArticle = () => {
             onDrop={(e) => {
               e.preventDefault();
               const files = e.dataTransfer.files;
-              console.log(files);
               fileRef.current?.files && (fileRef.current.files = files);
 
               setFormData({
