@@ -30,12 +30,16 @@ const NotificationsContent = ({
           key={notification.id}
         >
           <div className="notifications-content__notification">
+            <div className="notifications-content__notification__dot"></div>
+            <div>
             <p className="notifications-content__notification__content">
               {notification.content}
             </p>
             <p className="notifications-content__notification__date">
               {notification.date}
             </p>
+            </div>
+
             {/* to jest przycisk X na klocku xD */}
             <img
               onClick={() =>

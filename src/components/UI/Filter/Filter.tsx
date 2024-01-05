@@ -13,6 +13,7 @@ export const styles: StylesConfig = {
     ...baseStyles,
     fontSize: "1.4rem",
     width: "16rem",
+    minHeight: "1rem",
     cursor: "pointer",
     wordBreak: "break-word",
     textOverflow: "ellipsis",
@@ -24,12 +25,15 @@ export const styles: StylesConfig = {
     fontSize: "1.4rem",
     textTransform: "capitalize",
     cursor: "pointer",
-    width: "14rem",
   }),
   menu: (baseStyles, state) => ({
     ...baseStyles,
     zIndex: 2,
-    width: "14rem",
+    width: "16rem",
+  }),
+  dropdownIndicator: (base, props) => ({
+    ...base,
+    padding: "3px",
   }),
 };
 

@@ -6,6 +6,25 @@
     gap: 2rem;
     margin-right: 2rem;
     position: relative;
+
+    &__popover {
+      max-width: 28rem;
+      background-color: var(--background-primary);
+      border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.11);
+      h6 {
+        font-size: 1.6rem;
+        font-weight: 500;
+        letter-spacing: .05rem;
+        margin-top: 1.3rem;
+        text-align: center;
+        padding: 1.2rem 2rem;
+        border-top-right-radius: var(--border-radius-default);
+        border-top-left-radius: var(--border-radius-default);
+        color: var(--text-white);
+        background-color: var(--color-primary);
+      }
+    }
   }
   
   &__new-notification::after {
@@ -25,8 +44,8 @@
     color: var(--text-white);
     cursor: pointer;
     color: white;
-    width: 3rem;
-    height: 3rem;
+    width: 2.8rem;
+    height: 2.8rem;
   }
 }
 
