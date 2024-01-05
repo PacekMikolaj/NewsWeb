@@ -2,6 +2,10 @@
 
 News Web is an webpage that shows articles about your university.
 
+You can see our app here:
+
+https://newsweb-f200b.firebaseapp.com/
+
 ## Installation
 
 ```bash

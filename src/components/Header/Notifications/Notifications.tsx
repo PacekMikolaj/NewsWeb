@@ -15,30 +15,30 @@ const Notifications = () => {
   const [hasNewNotification, setHasNewNotification] = useState(false);
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
 
-  const notifications2 = [
-    {
-      content: "New article published on JavaScript best practices",
-      date: "2024-01-04",
-      author: "John Doe",
-      users: ["user1", "user2", "user3"],
-      articleId: "article_001",
-    },
-    {
-      content: "Updated article on TypeScript features",
-      date: "2024-01-03",
-      id: "notif_002",
-      author: "Jane Smith",
-      users: ["user4", "user5", "user6"],
-      articleId: "article_002",
-    },
-    {
-      content: "Reminder: Web development meeting tomorrow",
-      date: "2024-01-02",
-      author: "Alice Johnson",
-      users: ["user7", "user8", "user9"],
-      articleId: "article_003",
-    },
-  ];
+  // const notifications2 = [
+  //   {
+  //     content: "New article published on JavaScript best practices",
+  //     date: "2024-01-04",
+  //     author: "John Doe",
+  //     users: ["user1", "user2", "user3"],
+  //     articleId: "article_001",
+  //   },
+  //   {
+  //     content: "Updated article on TypeScript features",
+  //     date: "2024-01-03",
+  //     id: "notif_002",
+  //     author: "Jane Smith",
+  //     users: ["user4", "user5", "user6"],
+  //     articleId: "article_002",
+  //   },
+  //   {
+  //     content: "Reminder: Web development meeting tomorrow",
+  //     date: "2024-01-02",
+  //     author: "Alice Johnson",
+  //     users: ["user7", "user8", "user9"],
+  //     articleId: "article_003",
+  //   },
+  // ];
 
   useEffect(() => {
     if (userData.id) {
@@ -70,7 +70,7 @@ const Notifications = () => {
             className="notification__container__popover"
           >
             <h6>Notifications</h6>
-            <NotificationsContent notifications={notifications2} />
+            <NotificationsContent notifications={notifications} />
           </motion.div>
         }
       >
