@@ -8,6 +8,18 @@
   z-index: 2;
   color: var(--text-white);
 
+  @media (max-width: 870px) {
+    display: block;
+    height: unset;
+    width: unset;
+    right: 0 !important;
+    left: 0 !important;
+  }
+  
+  @media (max-height: 600px)  {
+    display: none;
+  }
+  
   &__panel {
     display: flex;
     flex-direction: column;
@@ -98,11 +110,4 @@
     }
   }
 
-  @media (max-width: 870px) {
-    display: block;
-    height: unset;
-    width: unset;
-    right: 0 !important;
-    left: 0 !important;
-  }
 }
